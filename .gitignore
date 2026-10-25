@@ -8,3 +8,5 @@ dist/
 # исходники, которые воспроизводятся скриптами (npm run assets / videos)
 public/assets/old-site/video-mp4/
 public/assets/old-site/youtube-thumbs/
+*.tsbuildinfo
+.impeccable/live/

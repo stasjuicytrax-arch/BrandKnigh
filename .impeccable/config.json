@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "roboto flex fallback",
+        "createdAt": "2026-10-25T19:58:56.235Z",
+        "reason": "TZ.md §6 требует size-adjust у системного фолбэка: это метрический алиас Arial под Roboto Flex, не новая гарнитура"
+      }
+    ]
+  }
+}

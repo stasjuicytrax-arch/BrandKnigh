@@ -1,0 +1,98 @@
+/* Токены дизайн-системы «Хромовый рыцарь» (DESIGN.md, frontmatter). Менять здесь, а не в компонентах. */
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/unbounded-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/unbounded-cyrillic-wght-normal.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Onest';
+  src: url('/fonts/onest-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Onest';
+  src: url('/fonts/onest-cyrillic-wght-normal.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Системные фолбэки, подогнанные под метрики, чтобы при подмене шрифта строки не прыгали (TZ.md §6) */
+@font-face {
+  font-family: 'Unbounded Fallback';
+  src: local('Arial Black'), local('Arial');
+  size-adjust: 112%;
+  ascent-override: 87%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Onest Fallback';
+  src: local('Arial'), local('Helvetica Neue');
+  size-adjust: 101%;
+  ascent-override: 98%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
+
+@theme {
+  --color-ground: #ffffff;
+  --color-surface: #f2f2ef;
+  --color-surface-2: #e7e7e2;
+  --color-ink: #0b0b0b;
+  --color-ink-soft: #5e5e5a;
+  --color-ink-dim: #8a8a84;
+  --color-lime: #d2ff1f;
+  --color-lime-deep: #b8e600;
+  --color-on-lime: #0b0b0b;
+  --color-ink-field: #0b0b0b;
+  --color-on-ink: #f4f4f0;
+  --color-signal: #ff3b1f;
+  /* компоненты 21st.dev используют shadcn-имя */
+  --color-foreground: #0b0b0b;
+
+  --font-display: 'Unbounded', 'Unbounded Fallback', 'Arial Black', sans-serif;
+  --font-sans: 'Onest', 'Onest Fallback', system-ui, sans-serif;
+
+  --radius-media: 28px;
+  --radius-field: 16px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+:root {
+  --margin: clamp(16px, 2.5vw, 40px);
+  --gutter: clamp(12px, 1.5vw, 24px);
+  --section: clamp(112px, 14vw, 240px);
+
+  --fs-display: clamp(34px, 8.6vw, 156px);
+  --fs-head: clamp(28px, 1rem + 3.6vw, 72px);
+  --fs-lead: clamp(19px, 1.1rem + 0.6vw, 26px);
+  --fs-body: clamp(17px, 1rem + 0.25vw, 19px);
+  --fs-small: 14px;
+
+  --dur-fast: 200ms;
+  --dur-base: 600ms;
+  --dur-slow: 1100ms;
+  --stagger: 70ms;
+  --rise: 24px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --header-h: 64px;
+}
+@media (max-width: 767px) {
+  :root { --radius-media: 20px; }
+}
