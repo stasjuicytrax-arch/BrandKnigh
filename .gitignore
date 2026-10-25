@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.cache/
+*.local
+.DS_Store
+/MEG_14June_story_v2.mp4
+
+# исходники, которые воспроизводятся скриптами (npm run assets / videos)
+public/assets/old-site/video-mp4/
+public/assets/old-site/youtube-thumbs/

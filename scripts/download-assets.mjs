@@ -8,7 +8,9 @@ const manifest = JSON.parse(readFileSync(new URL('../content/assets-manifest.jso
 const jobs = [];
 for (const [group, items] of Object.entries(manifest.groups)) {
   for (const it of items) {
-    jobs.push({ url: it.url, file: it.file });
+    // static.tildacdn.com бывает недоступен (TLS обрывается) — тот же файл лежит на зеркале .info
+    const mirror = it.url.includes('static.tildacdn.com') ? it.url.replace('static.tildacdn.com', 'static.tildacdn.info') : undefined;
+    jobs.push({ url: it.url, file: it.file, fallback: mirror });
     if (it.thumb) jobs.push({ url: it.thumb, file: `public/assets/old-site/youtube-thumbs/${it.youtube}.jpg`, fallback: `https://i.ytimg.com/vi/${it.youtube}/hqdefault.jpg` });
   }
 }
@@ -19,7 +21,7 @@ async function get(job) {
   mkdirSync(dirname(job.file), { recursive: true });
   for (const url of [job.url, job.fallback].filter(Boolean)) {
     try {
-      const r = await fetch(url, { redirect: 'follow' });
+      const r = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(60000) });
       if (!r.ok) continue;
       writeFileSync(job.file, Buffer.from(await r.arrayBuffer()));
       ok++; return;
