@@ -1,0 +1,792 @@
+{
+  "source": "https://brandknight.ru/",
+  "scrapedAt": "2026-10-25",
+  "note": "Все файлы старого сайта. Скачать: node scripts/download-assets.mjs (нужен обычный интернет).",
+  "groups": {
+    "brand": [
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild3734-3530-4564-b835-383737326264/BRK_White.svg",
+        "file": "public/assets/old-site/brand/3734-3530-BRK_White.svg"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild3330-6235-4138-b266-633739313739/BRK_White.svg",
+        "file": "public/assets/old-site/brand/3330-6235-BRK_White.svg"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild6430-3934-4661-b433-376337396632/BRK_White_1.svg",
+        "file": "public/assets/old-site/brand/6430-3934-BRK_White_1.svg"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild6137-6138-4236-a264-656638636135/Brk_png.png",
+        "file": "public/assets/old-site/brand/6137-6138-Brk_png.png"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild6233-6236-4038-b738-666363343935/Brk_png.png",
+        "file": "public/assets/old-site/brand/6233-6236-Brk_png.png"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild3464-3562-4131-b166-613638326362/Brk_png.png",
+        "file": "public/assets/old-site/brand/3464-3562-Brk_png.png"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild3165-3363-4264-a436-346334386161/_1.svg",
+        "file": "public/assets/old-site/brand/3165-3363-_1.svg"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild3633-3532-4535-a534-386336353665/_4_1.svg",
+        "file": "public/assets/old-site/brand/3633-3532-_4_1.svg"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild3232-3736-4866-b734-643938356136/Group_6757669.svg",
+        "file": "public/assets/old-site/brand/3232-3736-Group_6757669.svg"
+      },
+      {
+        "group": "brand",
+        "url": "https://static.tildacdn.com/tild6637-3135-4536-b136-336330323638/_Png.png",
+        "file": "public/assets/old-site/brand/6637-3135-_Png.png"
+      }
+    ],
+    "hero": [
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild6638-6636-4330-b465-636636616332/Frame_6757777.jpg",
+        "file": "public/assets/old-site/hero/6638-6636-Frame_6757777.jpg"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3538-3934-4235-b033-323432353337/9a0b7518394679965492.jpg",
+        "file": "public/assets/old-site/hero/3538-3934-9a0b7518394679965492.jpg"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3431-3763-4233-a332-356538306131/64b890d6-7a4b-45eb-8.png",
+        "file": "public/assets/old-site/hero/3431-3763-64b890d6-7a4b-45eb-8.png"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3036-3062-4232-a463-646239353238/photo.png",
+        "file": "public/assets/old-site/hero/3036-3062-photo.png"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild6430-6130-4938-b634-316234643162/photo.png",
+        "file": "public/assets/old-site/hero/6430-6130-photo.png"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild6361-3830-4232-b034-653465363737/Stylish_iPhone_16_Pr.png",
+        "file": "public/assets/old-site/hero/6361-3830-Stylish_iPhone_16_Pr.png"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3266-6364-4237-b337-353830663930/FOR_E__1.jpg",
+        "file": "public/assets/old-site/hero/3266-6364-FOR_E__1.jpg"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3361-6233-4362-b166-363932363530/S1_1.jpg",
+        "file": "public/assets/old-site/hero/3361-6233-S1_1.jpg"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3766-6333-4361-b462-323264643161/12.jpg",
+        "file": "public/assets/old-site/hero/3766-6333-12.jpg"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3961-6237-4537-b632-356135366531/Frame_6758287.png",
+        "file": "public/assets/old-site/hero/3961-6237-Frame_6758287.png"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3531-6263-4462-a630-393530366431/Frame_6757786.png",
+        "file": "public/assets/old-site/hero/3531-6263-Frame_6757786.png"
+      },
+      {
+        "group": "hero",
+        "url": "https://static.tildacdn.com/tild3837-6663-4337-b865-626332353666/noise.gif",
+        "file": "public/assets/old-site/hero/3837-6663-noise.gif"
+      }
+    ],
+    "services": [
+      {
+        "group": "services-icons",
+        "url": "https://static.tildacdn.com/tild3436-3264-4836-a563-323539646166/Group_7.png",
+        "file": "public/assets/old-site/services-icons/3436-3264-Group_7.png"
+      },
+      {
+        "group": "services-icons",
+        "url": "https://static.tildacdn.com/tild3431-3135-4639-b466-633339326534/Group_8_2.png",
+        "file": "public/assets/old-site/services-icons/3431-3135-Group_8_2.png"
+      },
+      {
+        "group": "services-icons",
+        "url": "https://static.tildacdn.com/tild6363-3662-4135-b839-323733373663/Group_9.png",
+        "file": "public/assets/old-site/services-icons/6363-3662-Group_9.png"
+      },
+      {
+        "group": "services-icons",
+        "url": "https://static.tildacdn.com/tild3162-6133-4931-a536-613535393765/Group_10.png",
+        "file": "public/assets/old-site/services-icons/3162-6133-Group_10.png"
+      },
+      {
+        "group": "services-icons",
+        "url": "https://static.tildacdn.com/tild6331-6136-4732-b732-323564353764/Group_11.png",
+        "file": "public/assets/old-site/services-icons/6331-6136-Group_11.png"
+      },
+      {
+        "group": "services-icons",
+        "url": "https://static.tildacdn.com/tild6462-3730-4539-a535-396365633230/Group_12.png",
+        "file": "public/assets/old-site/services-icons/6462-3730-Group_12.png"
+      }
+    ],
+    "posters": [
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6436-3464-4134-a239-616464353163/S1.jpg",
+        "file": "public/assets/old-site/posters-static/6436-3464-S1.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6332-6132-4630-b830-306565663364/DJ_Meg_-_24_May.jpg",
+        "file": "public/assets/old-site/posters-static/6332-6132-DJ_Meg_-_24_May.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6464-3930-4061-a261-323331613731/31_MAY_-_CHEROCKY.jpg",
+        "file": "public/assets/old-site/posters-static/6464-3930-31_MAY_-_CHEROCKY.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6466-3462-4831-a566-643435393163/Story_2_2.jpg",
+        "file": "public/assets/old-site/posters-static/6466-3462-Story_2_2.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6463-6330-4664-a136-363062333937/S11.jpg",
+        "file": "public/assets/old-site/posters-static/6463-6330-S11.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3134-3266-4132-b835-646266316162/Story_2.jpg",
+        "file": "public/assets/old-site/posters-static/3134-3266-Story_2.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3032-3836-4463-a264-306566656264/Smile_story.jpg",
+        "file": "public/assets/old-site/posters-static/3032-3836-Smile_story.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3533-6235-4934-b930-626663363832/Story_1.jpg",
+        "file": "public/assets/old-site/posters-static/3533-6235-Story_1.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3936-3339-4232-a136-666632353537/_1.jpg",
+        "file": "public/assets/old-site/posters-static/3936-3339-_1.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6231-6264-4265-a532-373638613262/G13_April_21.jpg",
+        "file": "public/assets/old-site/posters-static/6231-6264-G13_April_21.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6539-6339-4533-b939-366466343965/Story_4.jpg",
+        "file": "public/assets/old-site/posters-static/6539-6339-Story_4.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6361-3532-4238-b930-376131373362/Batumi_new_season__9.jpg",
+        "file": "public/assets/old-site/posters-static/6361-3532-Batumi_new_season__9.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6636-3331-4166-b463-373663633831/Story_5.jpg",
+        "file": "public/assets/old-site/posters-static/6636-3331-Story_5.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6165-3866-4164-a665-333734373964/Story.jpg",
+        "file": "public/assets/old-site/posters-static/6165-3866-Story.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild6132-3630-4764-b834-303237343235/Story_1_2.jpg",
+        "file": "public/assets/old-site/posters-static/6132-3630-Story_1_2.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3232-3933-4639-b632-326436616438/_1_1.jpg",
+        "file": "public/assets/old-site/posters-static/3232-3933-_1_1.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3062-3039-4832-a138-383732613431/_____.jpg",
+        "file": "public/assets/old-site/posters-static/3062-3039-_____.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3433-6661-4661-b363-333534343933/Gothic_carnival_3.jpg",
+        "file": "public/assets/old-site/posters-static/3433-6661-Gothic_carnival_3.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3966-3234-4332-a639-356634303938/Story_3_1.jpg",
+        "file": "public/assets/old-site/posters-static/3966-3234-Story_3_1.jpg"
+      },
+      {
+        "group": "posters-static",
+        "url": "https://static.tildacdn.com/tild3564-3261-4635-b436-333835643163/Story_3_2.jpg",
+        "file": "public/assets/old-site/posters-static/3564-3261-Story_3_2.jpg"
+      }
+    ],
+    "videos": [
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3536-6533-4538-a639-396463383734/__.jpg",
+        "file": "public/assets/old-site/video-covers/3536-6533-__.jpg",
+        "youtube": "5mK4kTPKZ9k",
+        "youtubeUrl": "https://www.youtube.com/watch?v=5mK4kTPKZ9k",
+        "thumb": "https://i.ytimg.com/vi/5mK4kTPKZ9k/maxresdefault.jpg",
+        "order": 1
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6433-3139-4765-b332-366239626332/Storys_2.jpg",
+        "file": "public/assets/old-site/video-covers/6433-3139-Storys_2.jpg",
+        "youtube": "Cjd1mTKGnKg",
+        "youtubeUrl": "https://www.youtube.com/watch?v=Cjd1mTKGnKg",
+        "thumb": "https://i.ytimg.com/vi/Cjd1mTKGnKg/maxresdefault.jpg",
+        "order": 2
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3130-3661-4132-a435-616463396536/2022-11-03_11-37-55.png",
+        "file": "public/assets/old-site/video-covers/3130-3661-2022-11-03_11-37-55.png",
+        "youtube": "a4FOjA_2OZQ",
+        "youtubeUrl": "https://www.youtube.com/watch?v=a4FOjA_2OZQ",
+        "thumb": "https://i.ytimg.com/vi/a4FOjA_2OZQ/maxresdefault.jpg",
+        "order": 3
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3837-3362-4531-b838-386138333730/2022-11-03_11-34-48.png",
+        "file": "public/assets/old-site/video-covers/3837-3362-2022-11-03_11-34-48.png",
+        "youtube": "iSFW5vyqNzk",
+        "youtubeUrl": "https://www.youtube.com/watch?v=iSFW5vyqNzk",
+        "thumb": "https://i.ytimg.com/vi/iSFW5vyqNzk/maxresdefault.jpg",
+        "order": 4
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3737-6237-4161-a432-613230316334/2022-11-03_11-43-56.png",
+        "file": "public/assets/old-site/video-covers/3737-6237-2022-11-03_11-43-56.png",
+        "youtube": "A3px6Bh2qKM",
+        "youtubeUrl": "https://www.youtube.com/watch?v=A3px6Bh2qKM",
+        "thumb": "https://i.ytimg.com/vi/A3px6Bh2qKM/maxresdefault.jpg",
+        "order": 5
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6535-3638-4631-a335-613730636663/26_NOVEMBER_STORY.jpg",
+        "file": "public/assets/old-site/video-covers/6535-3638-26_NOVEMBER_STORY.jpg",
+        "youtube": "hytYXIRvD9I",
+        "youtubeUrl": "https://www.youtube.com/watch?v=hytYXIRvD9I",
+        "thumb": "https://i.ytimg.com/vi/hytYXIRvD9I/maxresdefault.jpg",
+        "order": 6
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3662-3763-4131-a330-366434653536/Story.jpg",
+        "file": "public/assets/old-site/video-covers/3662-3763-Story.jpg",
+        "youtube": "ksp6yT9WuCs",
+        "youtubeUrl": "https://www.youtube.com/watch?v=ksp6yT9WuCs",
+        "thumb": "https://i.ytimg.com/vi/ksp6yT9WuCs/maxresdefault.jpg",
+        "order": 7
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6435-3261-4031-b037-316462306638/2022-11-03_11-32-40.png",
+        "file": "public/assets/old-site/video-covers/6435-3261-2022-11-03_11-32-40.png",
+        "youtube": "I9l8yuseP5k",
+        "youtubeUrl": "https://www.youtube.com/watch?v=I9l8yuseP5k",
+        "thumb": "https://i.ytimg.com/vi/I9l8yuseP5k/maxresdefault.jpg",
+        "order": 8
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6633-3130-4936-b536-323332626531/Story_3.jpg",
+        "file": "public/assets/old-site/video-covers/6633-3130-Story_3.jpg",
+        "youtube": "j7Ne1skQVOI",
+        "youtubeUrl": "https://www.youtube.com/watch?v=j7Ne1skQVOI",
+        "thumb": "https://i.ytimg.com/vi/j7Ne1skQVOI/maxresdefault.jpg",
+        "order": 9
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3038-3036-4464-b134-333730303764/2022-11-03_11-38-49.png",
+        "file": "public/assets/old-site/video-covers/3038-3036-2022-11-03_11-38-49.png",
+        "youtube": "UKuidKjLgM8",
+        "youtubeUrl": "https://www.youtube.com/watch?v=UKuidKjLgM8",
+        "thumb": "https://i.ytimg.com/vi/UKuidKjLgM8/maxresdefault.jpg",
+        "order": 10
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6161-6639-4362-a138-636439376363/202_1.jpg",
+        "file": "public/assets/old-site/video-covers/6161-6639-202_1.jpg",
+        "youtube": "TcWjYh5Beak",
+        "youtubeUrl": "https://www.youtube.com/watch?v=TcWjYh5Beak",
+        "thumb": "https://i.ytimg.com/vi/TcWjYh5Beak/maxresdefault.jpg",
+        "order": 11
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6666-3565-4230-b930-353031656133/Story.jpg",
+        "file": "public/assets/old-site/video-covers/6666-3565-Story.jpg",
+        "youtube": "1OZbTFYGeYY",
+        "youtubeUrl": "https://www.youtube.com/watch?v=1OZbTFYGeYY",
+        "thumb": "https://i.ytimg.com/vi/1OZbTFYGeYY/maxresdefault.jpg",
+        "order": 12
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6232-6665-4332-b233-376131396131/2022-11-03_11-42-27.png",
+        "file": "public/assets/old-site/video-covers/6232-6665-2022-11-03_11-42-27.png",
+        "youtube": "9_02SZ1zka8",
+        "youtubeUrl": "https://www.youtube.com/watch?v=9_02SZ1zka8",
+        "thumb": "https://i.ytimg.com/vi/9_02SZ1zka8/maxresdefault.jpg",
+        "order": 13
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3630-3238-4632-b730-626637313435/Story.jpg",
+        "file": "public/assets/old-site/video-covers/3630-3238-Story.jpg",
+        "youtube": "Otghkgddruw",
+        "youtubeUrl": "https://www.youtube.com/watch?v=Otghkgddruw",
+        "thumb": "https://i.ytimg.com/vi/Otghkgddruw/maxresdefault.jpg",
+        "order": 14
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3831-3866-4739-b139-356136373139/10_December_Story.jpg",
+        "file": "public/assets/old-site/video-covers/3831-3866-10_December_Story.jpg",
+        "youtube": "Kirhksw0rSU",
+        "youtubeUrl": "https://www.youtube.com/watch?v=Kirhksw0rSU",
+        "thumb": "https://i.ytimg.com/vi/Kirhksw0rSU/maxresdefault.jpg",
+        "order": 15
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6433-6564-4638-b937-333332346635/S1.jpg",
+        "file": "public/assets/old-site/video-covers/6433-6564-S1.jpg",
+        "youtube": "IzKDan8OnLU",
+        "youtubeUrl": "https://www.youtube.com/watch?v=IzKDan8OnLU",
+        "thumb": "https://i.ytimg.com/vi/IzKDan8OnLU/maxresdefault.jpg",
+        "order": 16
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3231-3766-4262-b834-383834383665/Batumi_new_season__1.jpg",
+        "file": "public/assets/old-site/video-covers/3231-3766-Batumi_new_season__1.jpg",
+        "youtube": "TFC8hfCmBMc",
+        "youtubeUrl": "https://www.youtube.com/watch?v=TFC8hfCmBMc",
+        "thumb": "https://i.ytimg.com/vi/TFC8hfCmBMc/maxresdefault.jpg",
+        "order": 17
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6361-3139-4935-b937-303030316634/Story_5.jpg",
+        "file": "public/assets/old-site/video-covers/6361-3139-Story_5.jpg",
+        "youtube": "a4FOjA_2OZQ",
+        "youtubeUrl": "https://www.youtube.com/watch?v=a4FOjA_2OZQ",
+        "thumb": "https://i.ytimg.com/vi/a4FOjA_2OZQ/maxresdefault.jpg",
+        "order": 18
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3930-6235-4165-a562-323064386532/Story_2.jpg",
+        "file": "public/assets/old-site/video-covers/3930-6235-Story_2.jpg",
+        "youtube": "Hbskw-7cKGk",
+        "youtubeUrl": "https://www.youtube.com/watch?v=Hbskw-7cKGk",
+        "thumb": "https://i.ytimg.com/vi/Hbskw-7cKGk/maxresdefault.jpg",
+        "order": 19
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3433-6333-4863-b833-653161363436/Story_2_1.jpg",
+        "file": "public/assets/old-site/video-covers/3433-6333-Story_2_1.jpg",
+        "youtube": "9dz9F80Y7A4",
+        "youtubeUrl": "https://www.youtube.com/watch?v=9dz9F80Y7A4",
+        "thumb": "https://i.ytimg.com/vi/9dz9F80Y7A4/maxresdefault.jpg",
+        "order": 20
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3637-3265-4363-a635-666133386461/Story_5_1.jpg",
+        "file": "public/assets/old-site/video-covers/3637-3265-Story_5_1.jpg",
+        "youtube": "M31fCLsxFPA",
+        "youtubeUrl": "https://www.youtube.com/watch?v=M31fCLsxFPA",
+        "thumb": "https://i.ytimg.com/vi/M31fCLsxFPA/maxresdefault.jpg",
+        "order": 21
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6565-6235-4339-a564-316363353238/Story_1.jpg",
+        "file": "public/assets/old-site/video-covers/6565-6235-Story_1.jpg",
+        "youtube": "vSQ7r3abWBU",
+        "youtubeUrl": "https://www.youtube.com/watch?v=vSQ7r3abWBU",
+        "thumb": "https://i.ytimg.com/vi/vSQ7r3abWBU/maxresdefault.jpg",
+        "order": 22
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild3733-6131-4565-b732-623663626637/G13_April_21.jpg",
+        "file": "public/assets/old-site/video-covers/3733-6131-G13_April_21.jpg",
+        "youtube": "GuzceAgOWbc",
+        "youtubeUrl": "https://www.youtube.com/watch?v=GuzceAgOWbc",
+        "thumb": "https://i.ytimg.com/vi/GuzceAgOWbc/maxresdefault.jpg",
+        "order": 23
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6464-6533-4431-b738-366433316266/Story_hb.jpg",
+        "file": "public/assets/old-site/video-covers/6464-6533-Story_hb.jpg",
+        "youtube": "6D6m5GBEgL4",
+        "youtubeUrl": "https://www.youtube.com/watch?v=6D6m5GBEgL4",
+        "thumb": "https://i.ytimg.com/vi/6D6m5GBEgL4/maxresdefault.jpg",
+        "order": 24
+      },
+      {
+        "group": "video-covers",
+        "url": "https://static.tildacdn.com/tild6265-6133-4234-a362-366231643863/List.png",
+        "file": "public/assets/old-site/video-covers/6265-6133-List.png",
+        "youtube": "A3px6Bh2qKM",
+        "youtubeUrl": "https://www.youtube.com/watch?v=A3px6Bh2qKM",
+        "thumb": "https://i.ytimg.com/vi/A3px6Bh2qKM/maxresdefault.jpg",
+        "order": 25
+      }
+    ],
+    "mp4": [
+      {
+        "group": "video-mp4",
+        "url": "https://dl.dropboxusercontent.com/scl/fi/x2gszp9hi4k01bwgfo6i0/qvino.mp4?rlkey=p0s5k0m6vjzs5s7t7rbdrhmoz&dl=1",
+        "file": "public/assets/old-site/video-mp4/qvino.mp4",
+        "note": "фон блока услуг"
+      },
+      {
+        "group": "video-mp4",
+        "url": "https://dl.dropboxusercontent.com/scl/fi/dx45i44g3uee2c3xgmcv0/Video-5.mp4?rlkey=jq6wf6llsbwyhl4q18fzhjix1&dl=1",
+        "file": "public/assets/old-site/video-mp4/video-5.mp4",
+        "note": "сторис в мокапе iPhone (блок «видео креативы»)"
+      },
+      {
+        "group": "video-mp4",
+        "url": "https://dl.dropboxusercontent.com/scl/fi/6d63rglxiz5s3emdyg0ul/Video-Story-3.mp4?rlkey=hxua3fclh589oirgiqwzbl21d&dl=1",
+        "file": "public/assets/old-site/video-mp4/video-story-3.mp4",
+        "note": "сторис в мокапе iPhone (блок «видео креативы»)"
+      },
+      {
+        "group": "video-mp4",
+        "url": "https://dl.dropboxusercontent.com/scl/fi/w1ldc173i6m5ksbkc4bmt/2.mp4?rlkey=rtehip4toc0dj1i4rk6bk6mks&dl=1",
+        "file": "public/assets/old-site/video-mp4/2.mp4",
+        "note": "фон после видео-креативов"
+      },
+      {
+        "group": "video-mp4",
+        "url": "https://dl.dropboxusercontent.com/scl/fi/r8pdjknfsyl43gxtaz5ng/3.mp4?rlkey=exu5syh1fbb5n9zdh50pahydw&dl=1",
+        "file": "public/assets/old-site/video-mp4/3.mp4",
+        "note": "фон блока контактов"
+      }
+    ],
+    "sites": [
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6464-6139-4232-a166-643338646639/2026-06-26_18-52-34.png",
+        "file": "public/assets/old-site/sites/6464-6139-2026-06-26_18-52-34.png",
+        "site": "https://help-wedding.ru/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild3331-3936-4037-b162-623463633565/2022-10-31_14-50-21.png",
+        "file": "public/assets/old-site/sites/3331-3936-2022-10-31_14-50-21.png",
+        "site": "https://www.school-xyz.com",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6330-6131-4031-b464-656663323862/2022-10-31_15-17-42.png",
+        "file": "public/assets/old-site/sites/6330-6131-2022-10-31_15-17-42.png",
+        "site": "https://welldone.green/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild3232-3330-4365-b238-323339363034/2022-11-03_17-31-54.png",
+        "file": "public/assets/old-site/sites/3232-3330-2022-11-03_17-31-54.png",
+        "site": "https://dinamo-school.ru/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6137-6261-4632-a530-356136366661/2023-10-01_23-32-29.png",
+        "file": "public/assets/old-site/sites/6137-6261-2023-10-01_23-32-29.png",
+        "site": "https://bimtara.ru/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild3763-3633-4337-b465-663065313237/2022-10-31_15-26-27.png",
+        "file": "public/assets/old-site/sites/3763-3633-2022-10-31_15-26-27.png",
+        "site": "http://sinoptikwear.com",
+        "status": "REMOVE"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6430-3032-4334-a364-363166656665/2022-12-02_14-52-00.png",
+        "file": "public/assets/old-site/sites/6430-3032-2022-12-02_14-52-00.png",
+        "site": "https://lp.synergy.ru/unmanned-technology",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6630-6330-4663-b632-303531656463/2025-10-01_16-44-57.png",
+        "file": "public/assets/old-site/sites/6630-6330-2025-10-01_16-44-57.png",
+        "site": "https://wapagency.ru/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild3730-3661-4030-b837-363234393761/2026-06-15_15-57-26.png",
+        "file": "public/assets/old-site/sites/3730-3661-2026-06-15_15-57-26.png",
+        "site": "https://filatova-tour.com/ (svetspace)",
+        "status": "REMOVE"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6131-6532-4664-b563-663432383338/2023-09-29_18-33-15.png",
+        "file": "public/assets/old-site/sites/6131-6532-2023-09-29_18-33-15.png",
+        "site": "https://citiwell.ru/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6361-3866-4239-a534-383636303166/2023-12-12_13-49-09.png",
+        "file": "public/assets/old-site/sites/6361-3866-2023-12-12_13-49-09.png",
+        "site": "https://msk.brkwood.ru/",
+        "status": "keep"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild6133-3865-4065-b539-333532323937/2026-06-15_16-00-06.png",
+        "file": "public/assets/old-site/sites/6133-3865-2026-06-15_16-00-06.png",
+        "site": "https://kampika.com/ (rebelway)",
+        "status": "REMOVE"
+      },
+      {
+        "group": "sites",
+        "url": "https://static.tildacdn.com/tild3239-3639-4135-a637-323364383439/2024-03-03_23-43-50.png",
+        "file": "public/assets/old-site/sites/3239-3639-2024-03-03_23-43-50.png",
+        "site": "https://nichegolishnego.shop/",
+        "status": "keep"
+      }
+    ],
+    "clients": [
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3061-6636-4337-b233-626537313664/CV.png",
+        "file": "public/assets/old-site/clients/3061-6636-CV.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3734-3534-4337-b535-663934393562/SVET_WHITE_PNG.png",
+        "file": "public/assets/old-site/clients/3734-3534-SVET_WHITE_PNG.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3835-6432-4731-b234-623336653639/Logo__White.png",
+        "file": "public/assets/old-site/clients/3835-6432-Logo__White.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3630-6439-4736-b732-636239623537/1.png",
+        "file": "public/assets/old-site/clients/3630-6439-1.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3030-6535-4661-b962-353831636637/5.png",
+        "file": "public/assets/old-site/clients/3030-6535-5.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild6564-3065-4132-b733-613365393561/_3_1.png",
+        "file": "public/assets/old-site/clients/6564-3065-_3_1.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild6436-3265-4762-b266-656265646131/smallsize_on_transpa.png",
+        "file": "public/assets/old-site/clients/6436-3265-smallsize_on_transpa.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3633-3333-4438-b961-316162623338/RIFZA_png.png",
+        "file": "public/assets/old-site/clients/3633-3333-RIFZA_png.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3535-6235-4735-b862-343864646335/Logo_Png__2.png",
+        "file": "public/assets/old-site/clients/3535-6235-Logo_Png__2.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3363-3031-4362-a433-626530303339/pngegg_3.png",
+        "file": "public/assets/old-site/clients/3363-3031-pngegg_3.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild6231-6335-4238-b135-303465373039/Logo_2.png",
+        "file": "public/assets/old-site/clients/6231-6335-Logo_2.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild6266-6337-4337-b265-643761313130/4.png",
+        "file": "public/assets/old-site/clients/6266-6337-4.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild6333-6638-4238-b932-346161653834/logo.svg",
+        "file": "public/assets/old-site/clients/6333-6638-logo.svg"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3162-3230-4962-a164-383365633535/Lukoil_logo-1068x601.png",
+        "file": "public/assets/old-site/clients/3162-3230-Lukoil_logo-1068x601.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3664-6531-4164-a635-393937336530/_-1.png",
+        "file": "public/assets/old-site/clients/3664-6531-_-1.png"
+      },
+      {
+        "group": "clients",
+        "url": "https://static.tildacdn.com/tild3362-6136-4164-b234-646365303032/MALogo.png",
+        "file": "public/assets/old-site/clients/3362-6136-MALogo.png"
+      }
+    ],
+    "identity": [
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild3538-6537-4262-b233-383833326536/_2.jpg",
+        "file": "public/assets/old-site/identity-gallery/3538-6537-_2.jpg"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild3532-3336-4765-b766-323236323962/_F.jpg",
+        "file": "public/assets/old-site/identity-gallery/3532-3336-_F.jpg"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild3830-3139-4233-b261-353730653030/A1_2.jpg",
+        "file": "public/assets/old-site/identity-gallery/3830-3139-A1_2.jpg"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild3666-3564-4261-b335-303333343936/279144508_5070921246.webp",
+        "file": "public/assets/old-site/identity-gallery/3666-3564-279144508_5070921246.webp"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild3739-3132-4432-a338-366433363432/239364988_3491209834.jpg",
+        "file": "public/assets/old-site/identity-gallery/3739-3132-239364988_3491209834.jpg"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild6166-6663-4863-a233-323561333961/Square.jpg",
+        "file": "public/assets/old-site/identity-gallery/6166-6663-Square.jpg"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild6664-3437-4366-b862-336333386336/26_NOVEMBER.jpg",
+        "file": "public/assets/old-site/identity-gallery/6664-3437-26_NOVEMBER.jpg"
+      },
+      {
+        "group": "identity-gallery",
+        "url": "https://static.tildacdn.com/tild6461-3863-4835-b961-393438633332/166746de425a1253c09e.jpg",
+        "file": "public/assets/old-site/identity-gallery/6461-3863-166746de425a1253c09e.jpg"
+      }
+    ],
+    "character": [
+      {
+        "group": "brand-character",
+        "url": "https://static.tildacdn.com/tild6363-3430-4333-b265-666164336664/PSD__.png",
+        "file": "public/assets/old-site/brand-character/6363-3430-PSD__.png"
+      },
+      {
+        "group": "brand-character",
+        "url": "https://static.tildacdn.com/tild6330-6661-4565-a665-636235663739/_.PNG",
+        "file": "public/assets/old-site/brand-character/6330-6661-_.PNG"
+      }
+    ],
+    "partnersStrip": [
+      {
+        "group": "partners-strip",
+        "url": "https://static.tildacdn.com/tild3034-3938-4433-b963-663037303063/1.png",
+        "file": "public/assets/old-site/partners-strip/3034-3938-1.png"
+      },
+      {
+        "group": "partners-strip",
+        "url": "https://static.tildacdn.com/tild3233-6137-4164-b265-346233626134/2.png",
+        "file": "public/assets/old-site/partners-strip/3233-6137-2.png"
+      },
+      {
+        "group": "partners-strip",
+        "url": "https://static.tildacdn.com/tild3037-6639-4731-b465-623932623339/3.png",
+        "file": "public/assets/old-site/partners-strip/3037-6639-3.png"
+      },
+      {
+        "group": "partners-strip",
+        "url": "https://static.tildacdn.com/tild3762-3462-4134-a439-333964333638/4.png",
+        "file": "public/assets/old-site/partners-strip/3762-3462-4.png"
+      },
+      {
+        "group": "partners-strip",
+        "url": "https://static.tildacdn.com/tild3834-3631-4534-a662-633439646430/52.png",
+        "file": "public/assets/old-site/partners-strip/3834-3631-52.png"
+      },
+      {
+        "group": "partners-strip",
+        "url": "https://static.tildacdn.com/tild3963-6232-4565-b330-633136306561/LOGO_2019_WHITE.png",
+        "file": "public/assets/old-site/partners-strip/3963-6232-LOGO_2019_WHITE.png"
+      }
+    ],
+    "misc": [
+      {
+        "group": "misc",
+        "url": "https://static.tildacdn.com/tild6465-6465-4633-a232-616336316430/icons8-instagram-240.png",
+        "file": "public/assets/old-site/misc/6465-6465-icons8-instagram-240.png"
+      },
+      {
+        "group": "misc",
+        "url": "https://static.tildacdn.com/tild3139-3961-4739-b264-346464313264/left_bold2.svg",
+        "file": "public/assets/old-site/misc/3139-3961-left_bold2.svg"
+      },
+      {
+        "group": "misc",
+        "url": "https://static.tildacdn.com/tild3338-3063-4961-b836-366435373836/right_bold2.svg",
+        "file": "public/assets/old-site/misc/3338-3063-right_bold2.svg"
+      }
+    ]
+  }
+}
