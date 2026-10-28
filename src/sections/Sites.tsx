@@ -11,6 +11,24 @@ import { goal } from '@/lib/metrika';
 
 const FIRST = 5; // широкая + одна, затем ряд из трёх
 
+/** Полный скриншот грузится при первом наведении и прокручивается внутри карточки — «листаешь сайт» */
+function Shot({ c }: { c: (typeof cases)[number] }) {
+  const [full, setFull] = useState(false);
+  return (
+    <span className={`case__shot ${full ? 'is-full' : ''}`} onPointerEnter={(e) => e.pointerType === 'mouse' && c.shots.full && setFull(true)}>
+      <img className="case__img" src={asset(c.shots.desktop)} alt={`Сайт ${c.name}`} loading="lazy" width={1440} height={900} />
+      {full && c.shots.full && <img className="case__full" src={asset(c.shots.full)} alt="" aria-hidden />}
+      {c.tag && (
+        <span className="case__tag">
+          <Glass />
+          <span>{c.tag}</span>
+        </span>
+      )}
+      <ArrowDot />
+    </span>
+  );
+}
+
 export function Sites() {
   const [all, setAll] = useState(false);
   const shown = all ? cases : cases.slice(0, FIRST);
@@ -26,7 +44,7 @@ export function Sites() {
         </div>
       </div>
 
-      <div className="cases">
+      <div className="cases" data-reveal>
         {shown.map((c, i) => (
           <a
             key={c.slug}
@@ -37,16 +55,7 @@ export function Sites() {
             data-cursor="Открыть"
             onClick={() => goal('case_open', { slug: c.slug })}
           >
-            <span className="case__shot">
-              <img src={asset(c.shots.desktop)} alt={`Сайт ${c.name}`} loading="lazy" width={1440} height={900} />
-              {c.tag && (
-                <span className="case__tag">
-                  <Glass />
-                  <span>{c.tag}</span>
-                </span>
-              )}
-              <ArrowDot />
-            </span>
+            <Shot c={c} />
             <span className="case__body">
               <b className="t-title">{c.name}</b>
               {c.about && <span className="case__about">{c.about}</span>}

@@ -10,7 +10,6 @@ import { tgUrl } from '@/data/site';
 import { posters } from '@/data/posters';
 import { videoSrc, videos } from '@/data/videos';
 import { asset, reducedMotion } from '@/lib/env';
-import { gsap } from '@/lib/scroll';
 
 const AUDIENCE = ['Диджеи', 'Клубы и бары', 'Фестивали', 'Караоке', 'Ведущие', 'Бренды'];
 const idx = (id: string) => videos.findIndex((v) => v.id === id);
@@ -116,28 +115,18 @@ export function Videos() {
   const root = useRef<HTMLElement>(null);
   const [lightbox, setLightbox] = useState<number | null>(null);
 
-  useEffect(() => {
-    if (reducedMotion() || !root.current) return;
-    const ctx = gsap.context(() => {
-      gsap.from('.bento > *', {
-        y: 32, scale: 0.96, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.07,
-        scrollTrigger: { trigger: '.bento', start: 'top 80%', once: true },
-      });
-    }, root);
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section id="video" ref={root} className="section container" aria-labelledby="video-h">
       <h2 id="video-h" className="t-head title">
         Рекламные видео&#8209;<span className="pill">креативы</span>
       </h2>
-      <div className="intro">
+      <div className="intro" data-reveal>
         <p className="t-body">Анимируем афиши, сторис и рекламные ролики для вечеринок, клубов, фестивалей и брендов. Делаем под Instagram, Telegram и экраны в зале.</p>
         <Button href={tgUrl()} place="video">Заказать анимацию</Button>
       </div>
 
-      <div className="bento">
+      <div className="bento" data-reveal>
         <button type="button" className="tile t-big" data-cursor="Смотреть" onClick={() => setLightbox(0)}>
           <Clip id="meg-14june" />
           <span className="tag"><Glass tone="dark" /><span>MEG · 14 июня</span><span className="live">Сторис</span></span>

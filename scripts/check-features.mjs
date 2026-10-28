@@ -69,7 +69,11 @@ await check('Карточка MEG открывает ролик со звуко�
   const ok = await p.evaluate(() => {
     const v = document.querySelector('.lightbox video');
     const btn = document.querySelector('.lightbox__close').getBoundingClientRect();
-    return v.src.endsWith('full.mp4') && !v.muted && btn.width < 80 && btn.height < 80;
+    // в окне должен быть виден обычный курсор: свой спрятан, системный не «none»
+    const own = document.querySelector('.cursor');
+    const ownHidden = !own || getComputedStyle(own).display === 'none';
+    const native = getComputedStyle(document.querySelector('.lightbox')).cursor !== 'none';
+    return v.src.endsWith('full.mp4') && !v.muted && btn.width < 80 && btn.height < 80 && ownHidden && native;
   });
   await closeLb();
   return ok && (await p.$('.lightbox')) === null;

@@ -16,7 +16,7 @@ export function Services() {
           <p className="t-body">Мы создаём готовые решения. Наш дизайн, ориентированный на пользователя, повышает производительность и увеличивает доход.</p>
         </div>
       </div>
-      <div className="services">
+      <div className="services" data-reveal>
         {services.map((s, i) => {
           const Icon = ICONS[i] ?? Sparkles;
           return (

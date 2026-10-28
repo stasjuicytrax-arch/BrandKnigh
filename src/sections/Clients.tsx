@@ -18,7 +18,7 @@ export function Clients() {
       <div className="clients__head">
         <h2 id="clients-h" className="t-head">Наши клиенты</h2>
       </div>
-      <ul className="clients__grid">
+      <ul className="clients__grid" data-reveal>
         {ALL.map((c, i) => (
           <li key={c.name} className={i === lit ? 'is-lit' : ''}>
             <img src={asset(c.logo)} alt={c.name} loading="lazy" />

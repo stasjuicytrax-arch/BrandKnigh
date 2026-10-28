@@ -31,10 +31,6 @@ export function AliveScene() {
   useEffect(() => {
     if (reducedMotion() || !root.current) return;
     const ctx = gsap.context(() => {
-      gsap.from('.alive__copy > *', {
-        y: 32, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.07,
-        scrollTrigger: { trigger: root.current, start: 'top 75%', once: true },
-      });
       gsap.from('.poster', {
         y: 48, opacity: 0, rotate: (i: number) => (i ? 4 : -4), duration: 1, ease: 'expo.out', stagger: 0.12,
         scrollTrigger: { trigger: root.current, start: 'top 70%', once: true },
@@ -45,7 +41,7 @@ export function AliveScene() {
 
   return (
     <section id="afishi" ref={root} className="alive section container" aria-labelledby="afishi-h">
-      <div className="alive__copy">
+      <div className="alive__copy" data-reveal>
         <h2 id="afishi-h" className="t-head">
           {scene.top} <span className="alive__mute">{scene.bottom}</span>
         </h2>
@@ -66,7 +62,7 @@ export function AliveScene() {
           onContextMenu={(e) => e.preventDefault()}
         >
           <img src={STILL} alt="Афиша MEG · 14 июня, статичная" width={540} height={960} className={pressing ? 'is-off' : ''} />
-          <video ref={held} src={videoSrc(ID, 'loop.mp4')} muted loop playsInline preload="none" className={pressing ? 'is-on' : ''} />
+          <video ref={held} src={videoSrc(ID, 'loop.mp4')} poster={STILL} muted loop playsInline preload="none" className={pressing ? 'is-on' : ''} />
           <figcaption className="poster__tag">
             <Glass tone="dark" />
             <span><b>{scene.before.label}</b> · {scene.before.text}</span>

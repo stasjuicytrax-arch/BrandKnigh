@@ -37,7 +37,7 @@ for (const w of widths) {
       const el = t.parentElement;
       if (!el || seen.has(el)) continue;
       seen.add(el);
-      if (el.closest('[aria-hidden="true"], .sr-only, .hello__track, .footer__word, [inert], svg, script, style, .menu')) continue;
+      if (el.closest('[aria-hidden="true"], .sr-only, .hello__track, [inert], svg, script, style, .menu')) continue;
       const cs = getComputedStyle(el);
       if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity === 0) continue;
       const r = document.createRange(); r.selectNodeContents(t);

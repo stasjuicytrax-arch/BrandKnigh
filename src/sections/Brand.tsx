@@ -1,17 +1,20 @@
 // 4.8 Логотипы и стиль + 4.9 Бренд-персонажи (тексты со старого сайта).
 // Логотипы — лаймовая сцена-карта, работы брошены на неё отпечатками с лёгким поворотом (Tenista/Carbon),
 // на hover выпрямляются. Персонаж Rubik — стеклянная карточка с текстом и две картинки.
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Glass } from '@/components/ui/liquid-glass';
-import { asset } from '@/lib/env';
+import { asset, reducedMotion } from '@/lib/env';
 
 const WORKS = Array.from({ length: 8 }, (_, i) => `assets/identity/id-${i + 1}.webp`);
 const TILT = [-6, 4, -3, 5, -4, 3, -5, 6];
 
 export function Identity() {
   const [open, setOpen] = useState<string | null>(null);
+  const dragged = useRef(false);
+  const still = reducedMotion();
   return (
     <section id="identity" className="identity scene section" aria-labelledby="identity-h">
       <div className="identity__head">
@@ -20,9 +23,28 @@ export function Identity() {
       </div>
       <div className="identity__wall">
         {WORKS.map((w, i) => (
-          <button key={w} type="button" className="print" style={{ '--r': `${TILT[i]}deg` } as React.CSSProperties} onClick={() => setOpen(w)} data-cursor="Открыть">
-            <img src={asset(w)} alt={`Работа студии: фирменный стиль ${i + 1}`} loading="lazy" />
-          </button>
+          <motion.button
+            key={w}
+            type="button"
+            className="print"
+            style={{ '--r': `${TILT[i]}deg` } as React.CSSProperties}
+            drag={!still}
+            dragSnapToOrigin
+            dragElastic={0.35}
+            dragTransition={{ bounceStiffness: 260, bounceDamping: 18 }}
+            whileDrag={{ scale: 1.06, zIndex: 5 }}
+            onDragStart={() => (dragged.current = true)}
+            onClick={() => {
+              if (dragged.current) {
+                dragged.current = false;
+                return;
+              }
+              setOpen(w);
+            }}
+            data-cursor="Тяни"
+          >
+            <img src={asset(w)} alt={`Работа студии: фирменный стиль ${i + 1}`} loading="lazy" draggable={false} />
+          </motion.button>
         ))}
       </div>
       {open &&
@@ -47,7 +69,7 @@ export function Characters() {
         <img className="characters__main" src={asset('assets/character/rubik.webp')} alt="Rubik — бренд-персонаж компании «Рубим жарим»" loading="lazy" width={900} height={900} />
         <img className="characters__faces" src={asset('assets/character/rubik-faces.webp')} alt="Эмоции персонажа Rubik" loading="lazy" width={1000} height={706} />
       </div>
-      <div className="characters__text">
+      <div className="characters__text" data-reveal>
         <h2 id="characters-h" className="t-head title">
           Бренд-<span className="pill">персонажи</span>
         </h2>

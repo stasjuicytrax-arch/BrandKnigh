@@ -12,13 +12,20 @@ import { Posters } from '@/sections/Posters';
 import { Services } from '@/sections/Services';
 import { Sites } from '@/sections/Sites';
 import { Videos } from '@/sections/Videos';
+import { initMagnetic, initReveals } from '@/lib/motion';
 import { initScroll, ScrollTrigger } from '@/lib/scroll';
 
 export default function App() {
   useEffect(() => {
     initScroll();
+    const offReveal = initReveals(document.body);
+    const offMagnet = initMagnetic();
     const t = setTimeout(() => ScrollTrigger.refresh(), 600);
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      offReveal();
+      offMagnet();
+    };
   }, []);
 
   return (

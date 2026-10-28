@@ -1,21 +1,34 @@
 // 4.5 Статичные креативы (TZ.md §4.5): наклонная сетка из 20 афиш, колонки бесконечно едут навстречу
 // друг другу, по центру стеклянная карточка с заголовком. Своя версия Tilted Grid Hero (код 21st.dev
 // заказчик не прислал). Клик по афише открывает её крупно. Reduced motion: колонки стоят.
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Glass } from '@/components/ui/liquid-glass';
 import { posters } from '@/data/posters';
 import { asset } from '@/lib/env';
+import { followPointer } from '@/lib/motion';
 
 const COLS = 5;
 const columns = Array.from({ length: COLS }, (_, c) => posters.filter((_, i) => i % COLS === c));
 
 export function Posters() {
   const [open, setOpen] = useState<string | null>(null);
+  const stage = useRef<HTMLDivElement>(null);
+
+  // наклонная сетка чуть поворачивается за курсором — поток «смотрит» на посетителя
+  useEffect(() => {
+    const el = stage.current;
+    const grid = el?.querySelector<HTMLElement>('.posters__grid');
+    if (!el || !grid) return;
+    return followPointer(el, (x, y) => {
+      grid.style.transform = `perspective(1600px) rotateX(${(24 - y * 6).toFixed(2)}deg) rotateZ(${(-12 + x * 4).toFixed(2)}deg) scale(1.05)`;
+    });
+  }, []);
+
   return (
     <section id="posters" className="posters section" aria-labelledby="posters-h">
-      <div className="posters__stage">
+      <div className="posters__stage" ref={stage}>
         <div className="posters__grid" aria-hidden>
           {columns.map((col, c) => (
             <div key={c} className={`posters__col ${c % 2 ? 'posters__col--down' : ''}`} style={{ animationDuration: `${38 + c * 4}s` }}>

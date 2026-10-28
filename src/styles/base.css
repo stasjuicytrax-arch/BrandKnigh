@@ -101,7 +101,7 @@ input, textarea { caret-color: var(--color-ink); }
 }
 
 /* Точка «Играет»: единственное место, где живёт live */
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; }
+.live { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
 .live::before {
   content: ''; width: 8px; height: 8px; border-radius: 9999px; background: var(--color-live);
   animation: live 1.4s infinite;

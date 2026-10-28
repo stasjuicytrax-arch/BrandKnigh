@@ -1,13 +1,15 @@
 // 4.12 Связь с нами (TZ.md §4.12) и 4.13 футер. Форма без сервера: валидация → текст заявки
 // копируется в буфер → открывается Telegram с этим текстом. Пока username не прислан, вместо Telegram
 // показываем готовый текст заявки и просим написать в Instagram.
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/Badge';
 import { Button } from '@/components/Buttons';
 import { email, instagram, telegram, tgUrl } from '@/data/site';
 import { asset } from '@/lib/env';
 import { goal } from '@/lib/metrika';
+import { reducedMotion } from '@/lib/env';
+import { gsap } from '@/lib/scroll';
 
 const NEEDS = ['Анимация афиш', 'Видео-креатив', 'Сайт', 'Логотип', 'Бренд-персонаж', 'Другое'];
 const WAYS = ['Telegram', 'WhatsApp', 'Звонок'];
@@ -88,7 +90,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="section container contact" aria-labelledby="contact-h">
-      <div className="contact__copy">
+      <div className="contact__copy" data-reveal>
         <h2 id="contact-h" className="t-head title">
           Связь <span className="pill">с нами</span>
         </h2>
@@ -148,7 +150,25 @@ export function Contact() {
   );
 }
 
+const WORD = 'BRANDKNIGHT';
+
 export function Footer() {
+  const word = useRef<HTMLParagraphElement>(null);
+  // буквы поднимаются волной, когда футер появляется
+  useEffect(() => {
+    const el = word.current;
+    if (!el || reducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.from(el.children, {
+        yPercent: 110,
+        duration: 1.2,
+        ease: 'expo.out',
+        stagger: 0.045,
+        scrollTrigger: { trigger: el, start: 'top 95%', once: true },
+      });
+    }, el);
+    return () => ctx.revert();
+  }, []);
   return (
     <footer className="footer scene" aria-labelledby="footer-h">
       <div className="footer__top">
@@ -169,7 +189,11 @@ export function Footer() {
         <span>© BrandKnight, 2026</span>
         <span>{email}</span>
       </div>
-      <p className="footer__word" aria-hidden>BRANDKNIGHT</p>
+      <p className="footer__word" ref={word} aria-hidden>
+        {WORD.split('').map((ch, i) => (
+          <span key={i}>{ch}</span>
+        ))}
+      </p>
     </footer>
   );
 }
