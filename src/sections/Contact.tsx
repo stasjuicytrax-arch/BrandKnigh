@@ -1,6 +1,5 @@
 // 4.12 Связь с нами (TZ.md §4.12) и 4.13 футер. Форма без сервера: валидация → текст заявки
-// копируется в буфер → открывается Telegram с этим текстом. Пока username не прислан, вместо Telegram
-// показываем готовый текст заявки и просим написать в Instagram.
+// копируется в буфер → открывается Telegram @Stas_G13 с этим текстом (в старых клиентах текст вставляется из буфера).
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/Badge';
@@ -64,7 +63,7 @@ export function Contact() {
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const err: typeof errors = {};
     if (name.trim().length < 2) err.name = 'Напишите, как к вам обращаться';
@@ -80,12 +79,11 @@ export function Contact() {
       `Описание: ${about.trim() || '—'}`,
       `Связаться: ${way.join(', ')}`,
     ].join('\n');
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {}
+    // буфер — без await: окно Telegram открывается сразу в обработчике клика, иначе Safari блокирует его как всплывающее
+    navigator.clipboard?.writeText(text).catch(() => {});
+    if (telegram) window.open(tgUrl(text), '_blank', 'noopener');
     goal('form_submit');
     setSent(text);
-    if (telegram) window.open(tgUrl(text), '_blank', 'noopener');
   };
 
   return (

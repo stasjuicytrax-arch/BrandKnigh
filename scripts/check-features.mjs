@@ -131,12 +131,12 @@ await check('Афиша из наклонной сетки открываетс�
   await closeLb();
   return true;
 });
-await check('Сайты: «Показать ещё» раскрывает все кейсы', async () => {
+await check('Сайты: на компьютере все кейсы видны сразу, одного размера', async () => {
   await p.locator('#sites').scrollIntoViewIfNeeded();
-  const label = await p.textContent('.more button');
-  await p.click('.more button');
-  const n = (await p.$$('.case')).length;
-  return n > 5 ? `${n} карточек (${label.trim()})` : false;
+  const r = await p.$$eval('.case', (a) => a.map((x) => [x.offsetWidth, getComputedStyle(x).display]));
+  const visible = r.filter(([, d]) => d !== 'none');
+  const sizes = new Set(visible.map(([w]) => w));
+  return visible.length === r.length && sizes.size === 1 ? `${visible.length} карточек по ${[...sizes][0]}px` : false;
 });
 await check('Карточки сайтов ведут на живые адреса', async () => {
   const hrefs = await p.$$eval('.case', (a) => a.map((x) => x.href));
@@ -160,16 +160,33 @@ await check('Форма: пустая отправка показывает 2 о
   await p.click('.form__submit');
   return (await p.$$('.field__error')).length === 2;
 });
-await check('Форма: заполненная → «Готово» с текстом заявки', async () => {
+await check('Форма: заполненная открывает Telegram @Stas_G13 с текстом и показывает «Готово»', async () => {
+  const popup = p.waitForEvent('popup', { timeout: 5000 });
   await p.fill('input[name=name]', 'Тест');
   await p.fill('input[name=tel]', '9991234567');
   await p.click('.chip:has-text("Сайт")');
   await p.click('.form__submit');
   await p.waitForSelector('.form__done');
   const t = await p.textContent('.form__done pre');
-  return t.includes('Телефон: +7 (999) 123-45-67') && t.includes('Нужно: Сайт');
+  const tg = await popup;
+  const u = tg.url();
+  await tg.close();
+  return t.includes('Телефон: +7 (999) 123-45-67') && t.includes('Нужно: Сайт') && u.includes('t.me/Stas_G13') && decodeURIComponent(u).includes('Нужно: Сайт');
 });
 await check('Страница политики открывается', async () => (await p.request.get(new URL('policy/', url).href)).ok());
+await check('Яндекс.Метрика 113849245 подключена, клик в Telegram шлёт цель tg_click', async () => {
+  const ok = await p.evaluate(() => typeof window.ym === 'function' && [...document.scripts].some((s) => s.src.includes('113849245')));
+  await p.evaluate(() => {
+    window.__goals = [];
+    const orig = window.ym;
+    window.ym = (...a) => { if (a[1] === 'reachGoal') window.__goals.push(a[2]); return orig?.(...a); };
+    const a = document.querySelector('.hero a[href*="t.me"]');
+    a.addEventListener('click', (e) => e.preventDefault(), { once: true });
+    a.click();
+  });
+  const goals = await p.evaluate(() => window.__goals);
+  return ok && goals.includes('tg_click');
+});
 const tg = await p.$$eval('a[href*="t.me"]', (a) => a.length);
 results.push([tg ? 'ок' : 'ЖДЁТ', 'Кнопки Telegram', tg ? `${tg} ссылок t.me` : 'username не задан, кнопки ведут к форме']);
 await p.close();
@@ -179,6 +196,14 @@ p = await b.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, has
 p.on('pageerror', (e) => errors.push('телефон: ' + e.message));
 await p.goto(url, { waitUntil: 'networkidle' });
 await p.waitForTimeout(1200);
+await check('Телефон: кейсов сначала 4, «Показать ещё» раскрывает все', async () => {
+  await p.locator('#sites').scrollIntoViewIfNeeded();
+  const before = await p.$$eval('.case', (a) => a.filter((x) => getComputedStyle(x).display !== 'none').length);
+  await p.tap('.more button');
+  const after = await p.$$eval('.case', (a) => a.filter((x) => getComputedStyle(x).display !== 'none').length);
+  return before === 4 && after > 4 ? `${before} → ${after}` : false;
+});
+await p.evaluate(() => scrollTo(0, 0));
 await check('Телефон: «Меню» открывается и ведёт к разделу', async () => {
   await p.tap('.nav__menu');
   await p.waitForTimeout(800);

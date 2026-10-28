@@ -616,7 +616,9 @@ button.tile { cursor: pointer; }
 .glass-svg .posters__card .glass { background: rgb(243 245 239 / 0.72); }
 
 /* ---------- 4.6 Сайты: карточки ---------- */
-.cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; margin-top: 40px; }
+.cases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; margin-top: 40px; }
+/* «Показать ещё» — только на телефоне */
+.more { display: none !important; }
 .case { display: grid; gap: 14px; align-content: start; color: var(--color-ink); text-decoration: none; }
 .case--wide { grid-column: span 2; }
 .case__shot { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: 24px; overflow: hidden; background: #dfe1da; }
@@ -870,7 +872,6 @@ button.tile { cursor: pointer; }
   .rail__card { width: min(64vw, 300px); }
   .rail__track { padding-inline: calc(50% - min(32vw, 150px)); }
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .case--wide { grid-column: span 2; }
   .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .service--lime, .service--dark, .service:last-child { grid-column: span 2; }
   .identity__wall { columns: 3; }
@@ -883,7 +884,8 @@ button.tile { cursor: pointer; }
   .t-lime, .t-dark { grid-column: span 12; grid-row: auto; }
   .t-pos, .t-vid { grid-column: span 6; grid-row: auto; aspect-ratio: 9 / 16; }
   .cases { grid-template-columns: 1fr; }
-  .case--wide { grid-column: auto; }
+  .case--more { display: none; }
+  .more { display: flex !important; }
   .services { grid-template-columns: 1fr; }
   .service--lime, .service--dark, .service:last-child { grid-column: auto; }
   .service { min-height: 180px; }

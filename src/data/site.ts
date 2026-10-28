@@ -1,14 +1,14 @@
 // Общие данные сайта. Тексты правятся здесь, а не в разметке.
 
-/** Telegram студии без @. Заказчик ещё не прислал username — пока пусто, кнопки ведут на #contact. */
-export const telegram = '';
+/** Telegram студии без @ (прислал заказчик 28.10.2026): сюда ведут все кнопки и форма заявки. */
+export const telegram = 'Stas_G13';
 
 export const instagram = [
   { handle: '@brandknight.design', url: 'https://instagram.com/brandknight.design' },
 ];
 
 export const email = 'Brand.knight@yandex.ru';
-export const metrikaId = 62752975;
+export const metrikaId = 113849245; // счётчик заказчика (28.10.2026)
 
 export const tgUrl = (text?: string) =>
   telegram ? `https://t.me/${telegram}${text ? `?text=${encodeURIComponent(text)}` : ''}` : '#contact';

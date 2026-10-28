@@ -1,6 +1,6 @@
 // 4.6 Создание сайтов (референс NextWave): заголовок слева + вводный текст, сетка карточек кейсов —
 // скриншот сверху со стеклянным тегом и круглой стрелкой, ниже название и одна фраза о проекте.
-// Сначала 6 новых, остальные раскрываются кнопкой. Клик открывает сайт (цель case_open).
+// На компьютере видны все кейсы, на телефоне — первые 4 и кнопка. Клик открывает сайт (цель case_open).
 import { useState } from 'react';
 import { ArrowDot, Button } from '@/components/Buttons';
 import { Glass } from '@/components/ui/liquid-glass';
@@ -9,7 +9,7 @@ import { tgUrl } from '@/data/site';
 import { asset } from '@/lib/env';
 import { goal } from '@/lib/metrika';
 
-const FIRST = 5; // широкая + одна, затем ряд из трёх
+const FIRST = 4; // на телефоне сначала 4, остальные — кнопкой (на компьютере все сразу, решение заказчика)
 
 /** Полный скриншот грузится при первом наведении и прокручивается внутри карточки — «листаешь сайт» */
 function Shot({ c }: { c: (typeof cases)[number] }) {
@@ -31,7 +31,6 @@ function Shot({ c }: { c: (typeof cases)[number] }) {
 
 export function Sites() {
   const [all, setAll] = useState(false);
-  const shown = all ? cases : cases.slice(0, FIRST);
   return (
     <section id="sites" className="section container" aria-labelledby="sites-h">
       <div className="split">
@@ -39,19 +38,19 @@ export function Sites() {
           Создание <span className="pill">сайтов</span>
         </h2>
         <div className="split__side">
-          <p className="t-body">Лендинги, пресс-киты артистов, сайты площадок и агентств. От идеи до запуска.</p>
+          <p className="t-body">Лендинги, интернет-магазины, пресс-киты артистов, сайты площадок и агентств. От идеи до запуска.</p>
           <Button href={tgUrl()} place="sites">Обсудить сайт</Button>
         </div>
       </div>
 
       <div className="cases" data-reveal>
-        {shown.map((c, i) => (
+        {cases.map((c, i) => (
           <a
             key={c.slug}
             href={c.url}
             target="_blank"
             rel="noopener"
-            className={`case ${i === 0 ? 'case--wide' : ''}`}
+            className={`case ${i >= FIRST && !all ? 'case--more' : ''}`}
             data-cursor="Открыть"
             onClick={() => goal('case_open', { slug: c.slug })}
           >
