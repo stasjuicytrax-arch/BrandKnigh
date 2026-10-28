@@ -15,6 +15,7 @@ export function Header({ standalone = false }: { standalone?: boolean }) {
   const [hidden, setHidden] = useState(false);
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState('#top');
+  const [onDark, setOnDark] = useState(false);
   const [shown, setShown] = useState(() => {
     if (standalone) return true;
     try {
@@ -61,6 +62,15 @@ export function Header({ standalone = false }: { standalone?: boolean }) {
     return () => io.disconnect();
   }, [standalone]);
 
+  // над тёмной полосой «Привет» полоса шапки становится тёмным стеклом, иначе текст тонет в размытом белом
+  useEffect(() => {
+    const dark = document.getElementById('hello');
+    if (standalone || !dark) return;
+    const io = new IntersectionObserver(([e]) => setOnDark(e.isIntersecting), { rootMargin: '0px 0px -88% 0px' });
+    io.observe(dark);
+    return () => io.disconnect();
+  }, [standalone]);
+
   useEffect(() => {
     document.documentElement.classList.toggle('menu-open', menu);
   }, [menu]);
@@ -76,7 +86,7 @@ export function Header({ standalone = false }: { standalone?: boolean }) {
   return (
     <>
       <header
-        className={`nav ${stuck ? 'nav--stuck glass' : ''} ${hidden && !menu ? 'nav--hidden' : ''} ${shown ? '' : 'nav--waiting'}`}
+        className={`nav ${stuck ? 'nav--stuck glass' : ''} ${stuck && onDark ? 'nav--on-dark' : ''} ${hidden && !menu ? 'nav--hidden' : ''} ${shown ? '' : 'nav--waiting'}`}
       >
         <a className="nav__brand glass" href={link('#top')} onClick={go('#top')} aria-label="BrandKnight — на главную">
           <i>BRK</i>

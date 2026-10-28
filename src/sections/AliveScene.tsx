@@ -101,8 +101,11 @@ export function AliveScene() {
           </h2>
 
           <div className="alive__card alive__card--before glass" aria-hidden>
-            <b className="t-title">{scene.before.label}</b>
-            <span className="t-small">{scene.before.text}</span>
+            <img src={STILL} alt="" width={54} height={96} />
+            <span>
+              <b className="t-title">{scene.before.label}</b>
+              <span className="t-small">{scene.before.text}</span>
+            </span>
           </div>
 
           <div
@@ -125,8 +128,11 @@ export function AliveScene() {
 
           <div className="alive__side">
             <div className="alive__card alive__card--after glass" aria-hidden>
-              <b className="t-title">{scene.after.label}</b>
-              <span className="t-small">{scene.after.text}</span>
+              <video src={videoSrc(ID, 'loop.mp4')} poster={STILL} muted loop playsInline autoPlay preload="none" />
+              <span>
+                <b className="t-title">{scene.after.label}</b>
+                <span className="t-small">{scene.after.text}</span>
+              </span>
             </div>
             <div className="alive__caption">
               <p className="t-lead">{scene.caption}</p>

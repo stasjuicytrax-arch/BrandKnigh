@@ -35,6 +35,7 @@ export function Hero() {
   const [preload] = useState(firstVisit);
   const [fontReady, setFontReady] = useState(false);
   const [sceneReady, setSceneReady] = useState(!three);
+  const [lost, setLost] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [count, setCount] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -107,11 +108,12 @@ export function Hero() {
     <section id="top" ref={root} className={`hero scene ${hidden ? 'is-loading' : ''}`} aria-labelledby="hero-h">
       {three && fontReady ? (
         <Suspense fallback={null}>
-          <HeroScene visible={visible} scroll={scroll} typing={revealed} reduced={reduced} appear={appear} onReady={onReady} />
+          <HeroScene visible={visible} scroll={scroll} typing={revealed} reduced={reduced} appear={appear} onReady={onReady} onLost={() => setLost(true)} />
         </Suspense>
       ) : null}
-      {!three && (
-        <div className="hero__fallback" aria-hidden>
+      {/* HTML-слоган со светом: без WebGL, при потере контекста и пока 3D не нарисовал первый кадр */}
+      {(!three || !sceneReady || lost) && (
+        <div className={`hero__fallback ${three && !lost ? 'hero__fallback--wait' : ''}`} aria-hidden>
           <span>We create</span>
           <span>digital</span>
           <span>

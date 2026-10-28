@@ -17,6 +17,8 @@ type Props = {
   /** 0..1 — узел собирается из прозрачности во время загрузки (прелоадер TZ.md §3.1) */
   appear: { current: number };
   onReady: () => void;
+  /** WebGL-контекст потерян: показать HTML-слоган */
+  onLost?: () => void;
 };
 
 const BG_VERT = /* glsl */ `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`;
@@ -249,6 +251,7 @@ export default function HeroScene(props: Props) {
       frameloop={props.visible ? 'always' : 'never'}
       gl={{ antialias: true, alpha: false }}
       camera={{ position: [0, 0, 12], fov: 32, near: 0.1, far: 100 }}
+      onCreated={({ gl }) => gl.domElement.addEventListener('webglcontextlost', () => props.onLost?.())}
     >
       <PerformanceMonitor onDecline={() => setDpr((d) => Math.max(1, d - 0.35))} />
       <Scene {...props} />
