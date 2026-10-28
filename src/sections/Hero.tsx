@@ -1,172 +1,177 @@
-// 4.1 Первый экран «Хромовый рыцарь» (TZ.md §4.1).
-// Сверху h1 «ДВИЖЕНИЕ [окно] / ПРОДАЁТ», в нижних 55% — 3D-рыцарь, на линии 52% фраза разрезана вокруг него.
-import { ArrowDown } from 'lucide-react';
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { GlassButton } from '@/components/GlassButton';
-import { InlineSlot } from '@/components/InlineSlot';
+// 4.1 Первый экран (TZ.md §4.1): сцена-карта с 3D-узлом из жидкого стекла сквозь слоган.
+// Эталон — design/concept/index.html. Загрузка (TZ.md §3.1) происходит в самой сцене: узел собирается
+// из прозрачности, внизу стеклянная пилюля со счётчиком, затем въезжают карточки и начинается печать.
+import { Play } from 'lucide-react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { Badge } from '@/components/Badge';
+import { REVEAL_EVENT } from '@/components/Header';
+import { GhostButton, LimeButton } from '@/components/Buttons';
+import { VideoLightbox } from '@/components/VideoLightbox';
 import { hero, tgUrl } from '@/data/site';
-import { videos } from '@/data/videos';
-import { asset, reducedMotion, webglOk } from '@/lib/env';
-import { gsap, ScrollTrigger, scrollToHash } from '@/lib/scroll';
-import { emitFlight, flight, heroPose } from '@/three/flight';
+import { stats } from '@/data/stats';
+import { videoSrc, videos } from '@/data/videos';
+import { reducedMotion, webglOk } from '@/lib/env';
+import { gsap } from '@/lib/scroll';
 
-const KnightScene = lazy(() => import('@/three/KnightScene'));
+const HeroScene = lazy(() => import('@/three/HeroScene'));
 
-// MEG первым (TZ.md §2.3), дальше живые афиши со старого сайта
-const SLOT_IDS = videos.slice(0, 8).map((v) => v.id);
+const KEY = 'bk-loaded';
+const MIN = 900;
+const MAX = 2000;
+const MEG = videos[0];
 
-export function Hero({ entered }: { entered: boolean }) {
+const firstVisit = () => {
+  try {
+    return !sessionStorage.getItem(KEY);
+  } catch {
+    return false;
+  }
+};
+
+export function Hero() {
   const root = useRef<HTMLElement>(null);
-  const [three] = useState(() => webglOk() && !reducedMotion());
-  const [pose, setPose] = useState(() => heroPose(window.innerWidth, window.innerHeight));
+  const [three] = useState(webglOk);
+  const [reduced] = useState(reducedMotion);
+  const [preload] = useState(firstVisit);
+  const [fontReady, setFontReady] = useState(false);
+  const [sceneReady, setSceneReady] = useState(!three);
+  const [revealed, setRevealed] = useState(false);
+  const [count, setCount] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const scroll = useRef(0);
+  const appear = useRef(preload && !reduced ? 0 : 1);
 
+  // слоган рисуется в canvas: сначала дождаться Unbounded
   useEffect(() => {
-    const r = () => setPose(heroPose(window.innerWidth, window.innerHeight));
-    window.addEventListener('resize', r);
-    return () => window.removeEventListener('resize', r);
+    document.fonts.load('800 100px Unbounded').finally(() => setFontReady(true));
   }, []);
 
-  // без 3D прелоадеру нечего ждать
   useEffect(() => {
-    if (!three) {
-      flight.ready = true;
-      emitFlight();
+    const el = root.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting));
+    io.observe(el);
+    const onScroll = () => (scroll.current = Math.min(1, window.scrollY / el.clientHeight));
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  // загрузка: 900–2000 мс, счётчик 0–100, узел собирается; без прелоадера — сразу
+  useEffect(() => {
+    if (!preload) {
+      if (sceneReady) setRevealed(true);
+      return;
     }
-  }, [three]);
+    const t0 = performance.now();
+    let raf = 0;
+    const tick = () => {
+      const el = performance.now() - t0;
+      appear.current = reduced ? 1 : Math.min(1, el / MIN);
+      setCount((c) => Math.max(c, Math.floor(Math.min(sceneReady ? 100 : 90, (el / MIN) * 100))));
+      if ((el >= MIN && sceneReady) || el >= MAX) {
+        appear.current = 1;
+        setCount(100);
+        try {
+          sessionStorage.setItem(KEY, '1');
+        } catch {}
+        setRevealed(true);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [preload, sceneReady, reduced]);
 
-  // «Полёт»: 0→100vh первого экрана, scrub 0.6
+  // въезд навигации и карточек снизу (stagger 70 мс)
   useEffect(() => {
-    if (!three || !root.current) return;
-    const st = ScrollTrigger.create({
-      trigger: root.current,
-      start: 'top top',
-      end: () => `+=${window.innerHeight}`,
-      scrub: 0.6,
-      onUpdate: (self) => {
-        flight.progress = self.progress;
-        emitFlight();
-      },
-    });
-    return () => st.kill();
-  }, [three]);
-
-  // вход после прелоадера: строки из-под маски, окно шторкой, половины фразы от центра, кнопка последней
-  useEffect(() => {
-    if (!entered || !root.current) return;
-    if (reducedMotion()) return;
-    const q = gsap.utils.selector(root.current);
-    // gsap.context: при повторном монтировании (StrictMode) from-анимации откатываются, а не замирают
+    if (!revealed || !root.current || reduced || !preload) return;
     const ctx = gsap.context(() => {
-      gsap
-        .timeline({ defaults: { ease: 'expo.out' } })
-        .from(q('.hero__line-inner'), { yPercent: 105, duration: 0.9, stagger: 0.12 })
-        .from(q('.inline-slot'), { clipPath: 'inset(100% 0 0 0)', duration: 0.9 }, 0.25)
-        .from(q('.hero__half--l'), { x: 60, opacity: 0, duration: 0.6 }, 0.45)
-        .from(q('.hero__half--r'), { x: -60, opacity: 0, duration: 0.6 }, 0.45)
-        .from(q('.hero__note'), { opacity: 0, duration: 0.6 }, 0.6)
-        .from(q('.hero__actions'), { y: 24, opacity: 0, duration: 0.6 }, 0.7);
+      gsap.from('[data-enter]', { y: 32, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.07 });
     }, root);
     return () => ctx.revert();
-  }, [entered]);
-
-  return (
-    <section id="top" ref={root} className="hero" style={{ visibility: entered ? 'visible' : 'hidden' }}>
-      <h1 className="hero__title t-display" aria-label={hero.ariaLabel}>
-        <span className="hero__line" aria-hidden>
-          <span className="hero__line-inner">{hero.slogan.first}</span>
-        </span>
-        <span className="hero__line" aria-hidden>
-          <span className="hero__line-inner">
-            {hero.slogan.second}
-            <InlineSlot ids={SLOT_IDS} interval={3000} width={1.7} className="hero__slot" />
-          </span>
-        </span>
-        <span className="hero__line" aria-hidden>
-          <span className="hero__line-inner">
-            <Typed word={hero.slogan.typed} start={entered} />
-          </span>
-        </span>
-      </h1>
-
-      <div className="hero__horizon">
-        <p className="t-lead hero__lead">
-          <span className="hero__half hero__half--l">{hero.leadLeft}</span>{' '}
-          <span className="hero__half hero__half--r">{hero.leadRight}</span>
-        </p>
-        <p className="t-body hero__note">{hero.note}</p>
-      </div>
-
-      {/* фолбэк без WebGL / при reduced motion: статичный рендер рыцаря (scripts/render-knight.mjs) */}
-      {!three && (
-        <img
-          className="hero__fallback"
-          src={asset('assets/fallback/hero.webp')}
-          alt=""
-          width={1200}
-          height={800}
-          style={{ left: pose.cx - (pose.w * 1.35) / 2, top: pose.cy - (pose.w * 1.35 * 2) / 3 / 2, width: pose.w * 1.35 }}
-        />
-      )}
-
-      <div className="hero__actions">
-        <GlassButton href={tgUrl()} place="hero">
-          {hero.cta}
-        </GlassButton>
-        <a
-          href="#afishi"
-          className="link-u t-small hero__secondary"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToHash('#afishi');
-          }}
-        >
-          {hero.secondary}
-          <ArrowDown aria-hidden size={18} strokeWidth={1.75} />
-        </a>
-      </div>
-
-      {three && (
-        <Suspense fallback={null}>
-          <KnightScene />
-        </Suspense>
-      )}
-    </section>
-  );
-}
-
-/** «_SOLUTION»: подчёркивание — мигающий курсор; слово печатается по 60 мс на букву и раз в 6 с перепечатывается. */
-function Typed({ word, start }: { word: string; start: boolean }) {
-  const still = reducedMotion();
-  const [n, setN] = useState(still ? word.length : 0);
+  }, [revealed, reduced, preload]);
 
   useEffect(() => {
-    if (still || !start) return;
-    let timer = 0;
-    let len = 0;
-    const type = () => {
-      if (len < word.length) {
-        setN(++len);
-        timer = window.setTimeout(type, 60);
-      } else timer = window.setTimeout(erase, 6000);
-    };
-    const erase = () => {
-      if (len > 0) {
-        setN(--len);
-        timer = window.setTimeout(erase, 35);
-      } else timer = window.setTimeout(type, 300);
-    };
-    timer = window.setTimeout(type, 500);
-    return () => clearTimeout(timer);
-  }, [start, still, word]);
+    if (revealed) window.dispatchEvent(new Event(REVEAL_EVENT));
+  }, [revealed]);
+
+  const onReady = useCallback(() => setSceneReady(true), []);
+  const hidden = preload && !revealed;
 
   return (
-    <span className="typed">
-      <span className={`typed__cursor ${still ? '' : 'typed__cursor--blink'}`}>_</span>
-      <span className="typed__word">
-        {word.slice(0, n)}
-        {/* невидимый остаток держит ширину строки, чтобы заголовок не прыгал */}
-        <span className="typed__rest">{word.slice(n)}</span>
-      </span>
-    </span>
+    <section id="top" ref={root} className={`hero scene ${hidden ? 'is-loading' : ''}`} aria-labelledby="hero-h">
+      {three && fontReady ? (
+        <Suspense fallback={null}>
+          <HeroScene visible={visible} scroll={scroll} typing={revealed} reduced={reduced} appear={appear} onReady={onReady} />
+        </Suspense>
+      ) : null}
+      {!three && (
+        <div className="hero__fallback" aria-hidden>
+          <span>We create</span>
+          <span>digital</span>
+          <span>
+            <i className="hero__cursor" />
+            solution
+          </span>
+        </div>
+      )}
+      <div className="grain" />
+      <h1 id="hero-h" className="sr-only">
+        We create digital solution. BrandKnight — анимация афиш, видео-креативы и создание сайтов
+      </h1>
+
+      <nav className="hero__side glass" aria-label="Разделы" data-enter>
+        <a className="is-on" href="#top" aria-label="Главная">BRK</a>
+        <a href="#afishi" aria-label="Афиши"><Play size={16} strokeWidth={2.2} /></a>
+        <a href="#sites" aria-label="Сайты">WEB</a>
+        <a href="#contact" aria-label="Контакты">TG</a>
+      </nav>
+
+      <Badge className="hero__badge" place="hero-badge" />
+
+      <div className="hero__stats">
+        {stats.map((s) => (
+          <div key={s.label} className="stat glass" data-enter>
+            <b>{s.value}</b>
+            <span>{s.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="hero__lead glass" data-enter>
+        <p>
+          {hero.leadLeft} {hero.leadRight}
+        </p>
+        <small>{hero.note}</small>
+        <div className="hero__row">
+          <LimeButton href={tgUrl()} place="hero" glass>
+            {hero.cta}
+          </LimeButton>
+          <GhostButton href="#afishi">{hero.secondary}</GhostButton>
+        </div>
+      </div>
+
+      <button type="button" className="hero__work glass" data-enter data-cursor="Смотреть" onClick={() => setLightbox(0)}>
+        <video src={videoSrc(MEG.id, 'loop.mp4')} poster={videoSrc(MEG.id, 'poster.webp')} muted loop playsInline autoPlay={!reduced} preload="metadata" />
+        <span>
+          <b>{hero.work.title}</b>
+          <span>{hero.work.name}</span>
+          <span className="live">Играет</span>
+        </span>
+      </button>
+
+      {preload && (
+        <div className={`hero__loader glass t-small tabular ${revealed ? 'is-done' : ''}`} role="status" aria-label="Загрузка">
+          {count}
+        </div>
+      )}
+
+      <VideoLightbox items={[MEG]} index={lightbox} onClose={() => setLightbox(null)} />
+    </section>
   );
 }

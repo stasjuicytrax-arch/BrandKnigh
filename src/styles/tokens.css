@@ -1,4 +1,4 @@
-/* Токены дизайн-системы «Хромовый рыцарь» (DESIGN.md, frontmatter). Менять здесь, а не в компонентах. */
+/* Токены дизайн-системы v2 «Стекло и свет» (DESIGN.md, frontmatter). Менять здесь, а не в компонентах. */
 
 @font-face {
   font-family: 'Unbounded';
@@ -47,52 +47,58 @@
 }
 
 @theme {
-  --color-ground: #ffffff;
-  --color-surface: #f2f2ef;
-  --color-surface-2: #e7e7e2;
+  --color-page: #eceee8;
+  --color-stage: #f3f5ef;
   --color-ink: #0b0b0b;
-  --color-ink-soft: #5e5e5a;
-  --color-ink-dim: #8a8a84;
+  --color-ink-soft: #55574f;
+  --color-ink-mute: #a3a69b;
   --color-lime: #d2ff1f;
-  --color-lime-deep: #b8e600;
-  --color-on-lime: #0b0b0b;
-  --color-ink-field: #0b0b0b;
-  --color-on-ink: #f4f4f0;
-  --color-signal: #ff3b1f;
+  --color-lime-deep: #b9e600;
+  --color-mint: #ccf2db;
+  --color-dark-tile: #111210;
+  --color-on-dark: #f4f5ef;
+  --color-live: #ff3b1f;
   /* компоненты 21st.dev используют shadcn-имя */
   --color-foreground: #0b0b0b;
 
   --font-display: 'Unbounded', 'Unbounded Fallback', 'Arial Black', sans-serif;
   --font-sans: 'Onest', 'Onest Fallback', system-ui, sans-serif;
 
-  --radius-media: 28px;
-  --radius-field: 16px;
+  --radius-scene: 40px;
+  --radius-tile: 28px;
+  --radius-card: 20px;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 :root {
-  --margin: clamp(16px, 2.5vw, 40px);
-  --gutter: clamp(12px, 1.5vw, 24px);
-  --section: clamp(112px, 14vw, 240px);
+  --inset: 12px;            /* отступ сцен от краёв окна */
+  --gap: 12px;              /* зазор бенто и колонок */
+  --section: clamp(80px, 10vw, 140px);
+  --container: 1440px;
 
-  --fs-display: clamp(34px, 8.6vw, 156px);
-  --fs-head: clamp(28px, 1rem + 3.6vw, 72px);
-  --fs-lead: clamp(19px, 1.1rem + 0.6vw, 26px);
-  --fs-body: clamp(17px, 1rem + 0.25vw, 19px);
-  --fs-small: 14px;
+  --fs-display: clamp(40px, 8.4vw, 150px);
+  --fs-head: clamp(34px, 6.2vw, 104px);
+  --fs-title: clamp(20px, 1.8vw, 28px);
+  --fs-lead: clamp(17px, 1rem + 0.4vw, 22px);
+  --fs-body: clamp(16px, 0.95rem + 0.2vw, 18px);
+  --fs-small: 13px;
+
+  --glass-fill: rgb(255 255 255 / 0.42);
+  --glass-line: rgb(255 255 255 / 0.65);
+  --glass-blur: blur(22px) saturate(1.6);
+  --glass-shadow: 0 10px 40px -12px rgb(30 40 10 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.7);
 
   --dur-fast: 200ms;
   --dur-base: 600ms;
   --dur-slow: 1100ms;
   --stagger: 70ms;
-  --rise: 24px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --header-h: 64px;
+  --header-h: 72px;
 }
 @media (max-width: 767px) {
-  :root { --radius-media: 20px; }
+  :root { --inset: 8px; --radius-scene: 28px; }
 }

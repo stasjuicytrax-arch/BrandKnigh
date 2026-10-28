@@ -8,6 +8,24 @@
         "value": "roboto flex fallback",
         "createdAt": "2026-10-25T19:58:56.235Z",
         "reason": "TZ.md §6 требует size-adjust у системного фолбэка: это метрический алиас Arial под Roboto Flex, не новая гарнитура"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        "createdAt": "2026-10-26T09:10:19.372Z",
+        "reason": "Кривая внутри кнопки Apple Tahoe Liquid Glass (21st.dev), код скопирован дословно по требованию заказчика"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "unbounded fallback",
+        "createdAt": "2026-10-26T09:10:19.673Z",
+        "reason": "TZ.md §6: метрический алиас Arial Black под Unbounded для size-adjust, не новая гарнитура"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "onest fallback",
+        "createdAt": "2026-10-26T09:10:19.954Z",
+        "reason": "TZ.md §6: метрический алиас Arial под Onest для size-adjust, не новая гарнитура"
       }
     ]
   }

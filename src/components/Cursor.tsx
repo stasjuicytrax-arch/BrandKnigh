@@ -1,4 +1,4 @@
-// Курсор (TZ.md §3.3), только pointer: fine. Точка 10px; над [data-cursor="текст"] — лаймовый круг 88px
+// Курсор (TZ.md §3.3), только pointer: fine. Точка 10px; над [data-cursor="текст"] — стеклянный круг 88px
 // с подписью; над ссылками и кнопками — 40px. Пружина stiffness 300, damping 30.
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -44,7 +44,7 @@ export function Cursor() {
   return (
     <motion.div className="cursor" aria-hidden style={{ x: sx, y: sy }}>
       <motion.div
-        className={`cursor__dot ${label ? 'cursor__dot--media' : ''} ${link ? 'cursor__dot--link' : ''}`}
+        className={`cursor__dot ${label ? 'cursor__dot--media glass' : ''} ${link ? 'cursor__dot--link' : ''}`}
         animate={{ width: size, height: size, scale: down ? 0.9 : 1 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >

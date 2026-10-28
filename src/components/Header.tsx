@@ -1,46 +1,44 @@
-// Шапка (TZ.md §3.2). Слот логотипа на первом экране пуст: туда прилетает 3D-рыцарь.
-// После 100vh — стеклянная полоса glass-clear; вниз прячется, вверх появляется.
-import { useEffect, useRef, useState } from 'react';
-import { GlassButton } from './GlassButton';
-import { LiquidGlass } from '@/components/ui/apple-tahoe-liquid-glass-button';
-import { instagram, nav, tgUrl, hero } from '@/data/site';
+// Шапка (TZ.md §3.2, DESIGN.md v2 §7): стеклянный логотип · стеклянная пилюля ссылок (активная лаймовая) ·
+// тёмная кнопка «Написать нам». На первом экране — три отдельных элемента поверх сцены, ниже — одна
+// стеклянная полоса сверху; при скролле вниз прячется, вверх появляется. Телефон: логотип + «Меню».
+import { useEffect, useState } from 'react';
+import { DarkButton, LimeButton } from './Buttons';
+import { hero, instagram, nav, tgUrl } from '@/data/site';
 import { asset, reducedMotion } from '@/lib/env';
 import { scrollToHash } from '@/lib/scroll';
-import { emitFlight, flight, onFlight } from '@/three/flight';
+
+/** Hero сообщает, что загрузка закончилась: шапка въезжает вместе с карточками */
+export const REVEAL_EVENT = 'bk:reveal';
 
 export function Header({ standalone = false }: { standalone?: boolean }) {
-  const slot = useRef<HTMLAnchorElement>(null);
-  const [landed, setLanded] = useState(standalone);
-  const [glass, setGlass] = useState(standalone);
+  const [stuck, setStuck] = useState(standalone);
   const [hidden, setHidden] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [active, setActive] = useState('#top');
+  const [shown, setShown] = useState(() => {
+    if (standalone) return true;
+    try {
+      return Boolean(sessionStorage.getItem('bk-loaded'));
+    } catch {
+      return true;
+    }
+  });
 
-  // слот логотипа сообщает сцене свои экранные координаты
   useEffect(() => {
-    if (standalone) return;
-    const measure = () => {
-      const r = slot.current?.getBoundingClientRect();
-      if (!r) return;
-      flight.target = { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width };
-      emitFlight();
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    const off = onFlight(() => setLanded(flight.progress >= 0.999));
-    return () => {
-      window.removeEventListener('resize', measure);
-      off();
-    };
-  }, [standalone]);
+    if (shown) return;
+    const on = () => setShown(true);
+    window.addEventListener(REVEAL_EVENT, on);
+    return () => window.removeEventListener(REVEAL_EVENT, on);
+  }, [shown]);
 
   useEffect(() => {
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
-      setGlass(standalone || y > window.innerHeight * 0.98);
-      // прятать только после посадки рыцаря с запасом, чтобы посадку было видно
-      setHidden(y > window.innerHeight * 1.6 && y > last + 2);
-      if (y < last - 2) setHidden(false);
+      const past = y > window.innerHeight * 0.85;
+      setStuck(standalone || past);
+      if (y < last - 2 || !past) setHidden(false);
+      else if (y > window.innerHeight * 1.2 && y > last + 2) setHidden(true);
       last = y;
     };
     onScroll();
@@ -48,66 +46,65 @@ export function Header({ standalone = false }: { standalone?: boolean }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, [standalone]);
 
+  // активный пункт: секция, которая сейчас в середине экрана
+  useEffect(() => {
+    if (standalone) return;
+    const ids = nav.map((n) => n.href.slice(1));
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(`#${e.target.id}`)),
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+  }, [standalone]);
+
   useEffect(() => {
     document.documentElement.classList.toggle('menu-open', menu);
   }, [menu]);
 
   const go = (href: string) => (e: React.MouseEvent) => {
-    if (standalone || !href.startsWith('#')) return;
-    e.preventDefault();
     setMenu(false);
+    if (standalone) return;
+    e.preventDefault();
     scrollToHash(href);
   };
-  const home = standalone ? asset('') : '#top';
+  const link = (href: string) => (standalone ? asset(href === '#top' ? '' : href) : href);
 
   return (
     <>
-      <header className={`site-header ${hidden && !menu ? 'site-header--hidden' : ''}`}>
-        <LiquidGlass
-          material="clear"
-          appearance="light"
-          refraction={20}
-          bezel={16}
-          blur={2}
-          saturation={1.4}
-          fallbackBlur={14}
-          className={`site-header__glass ${glass ? 'is-on' : ''}`}
-          aria-hidden
-        />
-        <div className="site-header__row px-margin">
-          <a ref={slot} href={home} onClick={go('#top')} className="site-header__logo" aria-label="BrandKnight — на главную">
-            <img src={asset('brk.svg')} alt="" className={landed ? 'is-on' : ''} />
-          </a>
-          <nav className="site-header__nav t-small" aria-label="Разделы">
-            {nav.map((n) => (
-              <a key={n.href} href={standalone ? asset(n.href) : n.href} onClick={go(n.href)}>
-                {n.label}
-              </a>
-            ))}
-          </nav>
-          <div className="site-header__cta">
-            <GlassButton href={tgUrl()} place="header" className="h-11! px-5!">
-              {hero.cta}
-            </GlassButton>
-          </div>
-          <button
-            type="button"
-            className="site-header__menu t-small"
-            aria-expanded={menu}
-            aria-controls="mobile-menu"
-            onClick={() => setMenu((m) => !m)}
-          >
-            {menu ? 'Закрыть' : 'Меню'}
-          </button>
-        </div>
+      <header
+        className={`nav ${stuck ? 'nav--stuck glass' : ''} ${hidden && !menu ? 'nav--hidden' : ''} ${shown ? '' : 'nav--waiting'}`}
+      >
+        <a className="nav__brand glass" href={link('#top')} onClick={go('#top')} aria-label="BrandKnight — на главную">
+          <i>BRK</i>
+          BRAND KNIGHT
+        </a>
+        <nav className="nav__links glass" aria-label="Разделы">
+          {nav.map((n) => (
+            <a key={n.href} href={link(n.href)} onClick={go(n.href)} className={active === n.href ? 'is-on' : ''} aria-current={active === n.href ? 'true' : undefined}>
+              {n.label}
+            </a>
+          ))}
+        </nav>
+        <DarkButton href={tgUrl()} place="header" className="nav__cta">
+          {hero.navCta}
+        </DarkButton>
+        <button type="button" className="nav__menu" aria-expanded={menu} aria-controls="mobile-menu" onClick={() => setMenu((m) => !m)}>
+          {menu ? 'Закрыть' : 'Меню'}
+        </button>
       </header>
 
-      <div id="mobile-menu" className={`mobile-menu ${menu ? 'is-open' : ''}`} aria-hidden={!menu} {...{ inert: menu ? undefined : '' }}>
-        <nav className="mobile-menu__list" aria-label="Меню">
+      <div id="mobile-menu" className={`menu scene ${menu ? 'is-open' : ''}`} aria-hidden={!menu} {...{ inert: menu ? undefined : '' }}>
+        <div className="menu__light" aria-hidden />
+        <div className="grain" />
+        <nav className="menu__list" aria-label="Меню">
           {nav.map((n, i) => (
             <a
               key={n.href}
-              href={standalone ? asset(n.href) : n.href}
+              href={link(n.href)}
               onClick={go(n.href)}
               className="t-head"
               style={{ transitionDelay: menu && !reducedMotion() ? `${200 + i * 50}ms` : '0ms' }}
@@ -116,11 +113,11 @@ export function Header({ standalone = false }: { standalone?: boolean }) {
             </a>
           ))}
         </nav>
-        <div className="mobile-menu__foot">
-          <GlassButton href={tgUrl()} place="menu" className="w-full">
+        <div className="menu__foot">
+          <LimeButton href={tgUrl()} place="menu" className="menu__tg">
             {hero.cta}
-          </GlassButton>
-          <a className="link-u t-small" href={instagram[0].url} target="_blank" rel="noopener">
+          </LimeButton>
+          <a className="t-small menu__ig" href={instagram[0].url} target="_blank" rel="noopener">
             Instagram {instagram[0].handle}
           </a>
         </div>

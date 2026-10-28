@@ -15,10 +15,10 @@ export const tgUrl = (text?: string) =>
   telegram ? `https://t.me/${telegram}${text ? `?text=${encodeURIComponent(text)}` : ''}` : '#contact';
 
 export const nav = [
+  { href: '#top', label: 'Главная' },
   { href: '#afishi', label: 'Афиши' },
   { href: '#sites', label: 'Сайты' },
   { href: '#services', label: 'Услуги' },
-  { href: '#clients', label: 'Клиенты' },
   { href: '#contact', label: 'Контакты' },
 ];
 
@@ -31,6 +31,8 @@ export const hero = {
   note: 'Цифровой маркетинг, который помогает бизнесу развиваться',
   cta: 'Написать в Telegram',
   secondary: 'Смотреть работы',
+  navCta: 'Написать нам',
+  work: { title: 'Рекламные видео-креативы', name: 'MEG · 14 июня' },
 };
 
 export const hello = {
@@ -42,5 +44,8 @@ export const hello = {
 export const scene = {
   top: 'Анимация',
   bottom: 'афиш',
+  before: { label: 'Было', text: 'статичная афиша' },
+  after: { label: 'Стало', text: 'афиша в движении' },
   caption: 'Анимированная афиша останавливает палец в ленте. Оживим ваш макет или сделаем афишу с нуля.',
+  cta: 'Заказать анимацию',
 };

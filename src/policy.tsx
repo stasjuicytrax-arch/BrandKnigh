@@ -9,7 +9,7 @@ function Policy() {
   return (
     <>
       <Header standalone />
-      <main className="policy px-margin">
+      <main className="policy container">
         <h1 className="t-head">Политика конфиденциальности</h1>
         <p className="t-lead policy__sub">{policyTitle}</p>
         <div className="policy__body">
