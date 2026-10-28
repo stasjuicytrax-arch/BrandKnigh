@@ -45,16 +45,27 @@ function Rail({ open }: { open: (i: number) => void }) {
     return () => io.disconnect();
   }, []);
 
+  // листаем только саму ленту по горизонтали: scrollIntoView прокручивал всю страницу к ленте
   const go = (dir: number) => {
     const el = rail.current;
     const card = el?.querySelector<HTMLElement>(`[data-i="${Math.max(0, Math.min(videos.length - 1, active + dir))}"]`);
-    card?.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+    if (!el || !card) return;
+    const left = card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2;
+    el.scrollTo({ left, behavior: reducedMotion() ? 'auto' : 'smooth' });
   };
 
-  // автоплей ленты 3.5 с; пауза кнопкой (WCAG 2.2.2) и при наведении
+  // автоплей ленты 3.5 с — только пока лента на экране; пауза кнопкой (WCAG 2.2.2) и при наведении
   const hover = useRef(false);
+  const [inView, setInView] = useState(false);
   useEffect(() => {
-    if (paused) return;
+    const el = rail.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    if (paused || !inView) return;
     const t = setInterval(() => !hover.current && go(active >= videos.length - 1 ? -videos.length : 1), 3500);
     return () => clearInterval(t);
   });
