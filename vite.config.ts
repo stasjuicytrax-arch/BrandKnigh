@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 // base: адрес GitHub Pages. Если подключат brandknight.ru — base: '/' и public/CNAME.
 export default defineConfig({
-  base: '/BrandKnigh/',
+  base: '/',
   plugins: [react(), tailwindcss()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
