@@ -8,7 +8,6 @@ import { Button, PlayLink } from '@/components/Buttons';
 import { Glass } from '@/components/ui/liquid-glass';
 import { VideoLightbox } from '@/components/VideoLightbox';
 import { hero, tgUrl } from '@/data/site';
-import { stats } from '@/data/stats';
 import { videoSrc, videos } from '@/data/videos';
 import { asset, reducedMotion } from '@/lib/env';
 import { gsap } from '@/lib/scroll';
@@ -116,16 +115,6 @@ export function Hero() {
             <span className="live">Играет</span>
           </span>
         </button>
-
-        <div className="hero__card hero__card--stats" data-float>
-          <Glass tone="dark" />
-          {stats.map((s) => (
-            <div key={s.label} className="hero__stat">
-              <b>{s.value}</b>
-              <span>{s.label}</span>
-            </div>
-          ))}
-        </div>
 
         <Badge className="hero__badge" place="hero-badge" />
       </div>

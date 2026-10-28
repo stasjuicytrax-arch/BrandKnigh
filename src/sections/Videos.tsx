@@ -130,11 +130,7 @@ export function Videos() {
   return (
     <section id="video" ref={root} className="section container" aria-labelledby="video-h">
       <h2 id="video-h" className="t-head title">
-        Рекламные{' '}
-        <span className="inset" aria-hidden>
-          <Clip id="Cjd1mTKGnKg" />
-        </span>{' '}
-        видео&#8209;<span className="pill">креативы</span>
+        Рекламные видео&#8209;<span className="pill">креативы</span>
       </h2>
       <div className="intro">
         <p className="t-body">Анимируем афиши, сторис и рекламные ролики для вечеринок, клубов, фестивалей и брендов. Делаем под Instagram, Telegram и экраны в зале.</p>

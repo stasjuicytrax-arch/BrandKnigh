@@ -5,7 +5,6 @@ export const telegram = '';
 
 export const instagram = [
   { handle: '@brandknight.design', url: 'https://instagram.com/brandknight.design' },
-  { handle: '@stastoropov', url: 'https://www.instagram.com/stastoropov/' },
 ];
 
 export const email = 'Brand.knight@yandex.ru';

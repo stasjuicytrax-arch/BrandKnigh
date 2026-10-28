@@ -169,6 +169,9 @@ body { padding-block: var(--inset) 0; }
 .nav__bar > .glass { opacity: 0; transition: opacity 300ms; }
 .nav--stuck .nav__bar { margin-inline: max(var(--inset), calc((100% - var(--container)) / 2)); padding-inline: 10px; }
 .nav--stuck .nav__bar > .glass { opacity: 1; }
+/* Шапка — широкая низкая полоса: SVG-преломление растягивается по ней и смазывает картинку под ней.
+   Для неё — чистое матовое стекло (рецепт допускает: фолбэк-вариант). */
+.glass-svg .nav__bar > .glass { background: rgb(255 255 255 / 0.62); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); }
 .nav__brand {
   display: flex;
   align-items: center;
@@ -304,7 +307,8 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
   margin: 28px 0 24px;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(38px, 4.9vw, 84px);
+  /* верх 64px: колонка заголовка ограничена контейнером 1440, слово «развиваться» должно влезать целиком */
+  font-size: clamp(36px, 4.3vw, 64px);
   line-height: 1.02;
   letter-spacing: -0.04em;
 }
@@ -594,13 +598,13 @@ button.tile { cursor: pointer; }
 .posters__card {
   position: relative;
   z-index: 2;
-  width: min(560px, calc(100% - 32px));
+  width: min(640px, calc(100% - 32px));
   padding: clamp(24px, 3vw, 40px);
   border-radius: var(--radius-tile);
   text-align: center;
   color: var(--color-ink);
 }
-.posters__card h2 { margin: 0 0 14px; font-size: clamp(30px, 4.6vw, 72px); }
+.posters__card h2 { margin: 0 0 14px; font-size: clamp(28px, 4vw, 56px); }
 .posters__card p { margin: 0; }
 .posters__card .glass { background: rgb(243 245 239 / 0.82); }
 .glass-svg .posters__card .glass { background: rgb(243 245 239 / 0.72); }

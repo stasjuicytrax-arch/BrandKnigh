@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "assets": "node scripts/download-assets.mjs",
     "videos": "node scripts/fetch-videos.mjs",
-    "shots": "node scripts/shoot-cases.mjs"
+    "shots": "node scripts/shoot-cases.mjs",
+    "check:layout": "node scripts/check-layout.mjs",
+    "check:features": "node scripts/check-features.mjs"
   },
   "dependencies": {
     "@fontsource-variable/onest": "^5.3.1",

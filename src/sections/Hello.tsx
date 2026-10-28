@@ -1,8 +1,7 @@
 // 4.2 «Привет» + цифры (TZ.md §4.2): тёмная полоса-сцена (как в NextWave). Бегущая строка со старого сайта,
-// скорость и наклон от скорости скролла; под ней фраза и три счётчика лаймом, досчитывают от 0 при появлении.
-import { Fragment, useEffect, useRef, useState } from 'react';
+// скорость и наклон от скорости скролла; под ней фраза со старого сайта. Цифры убраны по решению заказчика 28.10.2026.
+import { Fragment, useEffect, useRef } from 'react';
 import { hello } from '@/data/site';
-import { stats } from '@/data/stats';
 import { reducedMotion } from '@/lib/env';
 import { onScrollVelocity } from '@/lib/scroll';
 
@@ -19,45 +18,9 @@ function Run({ hidden }: { hidden?: boolean }) {
   );
 }
 
-function Counter({ value, label, run }: { value: number; label: string; run: boolean }) {
-  const [n, setN] = useState(reducedMotion() ? value : 0);
-  useEffect(() => {
-    if (!run || reducedMotion()) return;
-    const t0 = performance.now();
-    const dur = 1400;
-    let raf = 0;
-    const tick = (now: number) => {
-      const k = Math.min(1, (now - t0) / dur);
-      setN(Math.round(value * (1 - Math.pow(1 - k, 3))));
-      if (k < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [run, value]);
-  return (
-    <div className="hello__stat">
-      <b className="tabular" aria-hidden>{n}</b>
-      <span aria-hidden>{label}</span>
-      <span className="sr-only">
-        {value} {label}
-      </span>
-    </div>
-  );
-}
-
 export function Hello() {
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
-  const [seen, setSeen] = useState(false);
-
-  useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => e.isIntersecting && setSeen(true), { threshold: 0.35 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   useEffect(() => {
     const el = track.current;
     if (!el || reducedMotion()) return;
@@ -95,11 +58,6 @@ export function Hello() {
       </div>
       <div className="hello__row">
         <p className="t-lead hello__lead">{hello.lead}</p>
-        <div className="hello__stats">
-          {stats.map((s) => (
-            <Counter key={s.label} value={s.value} label={s.label} run={seen} />
-          ))}
-        </div>
       </div>
     </section>
   );

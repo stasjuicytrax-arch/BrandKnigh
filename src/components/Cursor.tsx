@@ -44,7 +44,7 @@ export function Cursor() {
   return (
     <motion.div className="cursor" aria-hidden style={{ x: sx, y: sy }}>
       <motion.div
-        className={`cursor__dot ${label ? 'cursor__dot--media glass' : ''} ${link ? 'cursor__dot--link' : ''}`}
+        className={`cursor__dot ${label ? 'cursor__dot--media' : ''} ${link ? 'cursor__dot--link' : ''}`}
         animate={{ width: size, height: size, scale: down ? 0.9 : 1 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >

@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { Glass } from '@/components/ui/liquid-glass';
 import { videoSrc, type Video } from '@/data/videos';
 import { goal } from '@/lib/metrika';
 
@@ -59,16 +60,19 @@ export function VideoLightbox({ items, index, onClose }: Props) {
       }}
     >
       <video key={v.id} className="lightbox__video" src={videoSrc(v.id, 'full.mp4')} poster={videoSrc(v.id, 'poster.webp')} controls autoPlay playsInline />
-      {v.title && <p className="lightbox__title t-small glass">{v.title}</p>}
-      <button ref={close} type="button" className="lightbox__btn lightbox__close glass" aria-label="Закрыть" onClick={onClose}>
+      {v.title && <p className="lightbox__title t-small">{v.title}</p>}
+      <button ref={close} type="button" className="lightbox__btn lightbox__close" aria-label="Закрыть" onClick={onClose}>
+        <Glass />
         <X size={22} strokeWidth={2} />
       </button>
       {many && (
         <>
-          <button type="button" className="lightbox__btn lightbox__prev glass" aria-label="Предыдущее видео" onClick={() => setI((p) => (p - 1 + items.length) % items.length)}>
+          <button type="button" className="lightbox__btn lightbox__prev" aria-label="Предыдущее видео" onClick={() => setI((p) => (p - 1 + items.length) % items.length)}>
+            <Glass />
             <ChevronLeft size={24} strokeWidth={2} />
           </button>
-          <button type="button" className="lightbox__btn lightbox__next glass" aria-label="Следующее видео" onClick={() => setI((p) => (p + 1) % items.length)}>
+          <button type="button" className="lightbox__btn lightbox__next" aria-label="Следующее видео" onClick={() => setI((p) => (p + 1) % items.length)}>
+            <Glass />
             <ChevronRight size={24} strokeWidth={2} />
           </button>
         </>

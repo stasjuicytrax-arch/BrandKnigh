@@ -1,6 +1,6 @@
-// 17 кейсов сайтов из content/cases.md: сначала новые, затем старые.
+// Кейсы сайтов: сначала новые, затем старые. 28.10.2026 заказчик убрал «Динамо» и «Ничего лишнего», добавил ST EVENT.
 // Скриншоты новых: public/assets/cases/<slug>-{desktop,mobile,full}.webp (scripts/shoot-cases.mjs).
-// ⚠ bimtara.ru: на скриншоте со старого сайта открыт сайт DIGITAL EVENTS — пара под вопросом, спросить заказчика.
+// bimtara.ru: скриншот со старого сайта был чужой (DIGITAL EVENTS), снят заново 28.10.2026.
 export type Case = {
   slug: string;
   name: string;
@@ -31,16 +31,16 @@ export const cases: Case[] = [
     about: 'Сеть караоке-лофтов в Санкт-Петербурге: 56 залов, 4 локации, бронь в 6 шагов.', shots: shot('partytime') },
   { slug: 'digital-events', name: 'DIGITAL EVENTS', url: 'https://stasjuicytrax-arch.github.io/DIGITAL-EVENTS/', tag: 'Сайт агентства', featured: true,
     about: 'Креативное агентство из Перми: цифровые аттракционы, AR, 3D-mapping для событий.', shots: shot('digital-events') },
+  { slug: 'st-event', name: 'ST EVENT', url: 'https://st-event.com/', tag: 'Сайт агентства',
+    about: 'Event-агентство из Перми с 2008 года: корпоративы, юбилеи и деловые мероприятия.', shots: shot('st-event') },
   { slug: 'stastoropov', name: 'Стас Торопов', url: 'https://stastoropov-site.vercel.app/', tag: 'Сайт ведущего',
     about: 'Ведущий мероприятий в Перми: свадьбы, корпоративы, юбилеи.', shots: shot('stastoropov') },
   { slug: 'help-wedding', name: 'В титрах', url: 'https://help-wedding.ru/', shots: old('6464-6139-2026-06-26_18-52-34.png') },
   { slug: 'school-xyz', name: 'School XYZ', url: 'https://www.school-xyz.com', shots: old('3331-3936-2022-10-31_14-50-21.png') },
   { slug: 'welldone', name: 'Welldone', url: 'https://welldone.green/', shots: old('6330-6131-2022-10-31_15-17-42.png') },
-  { slug: 'dinamo', name: 'Динамо', url: 'https://dinamo-school.ru/', shots: old('3232-3330-2022-11-03_17-31-54.png') },
-  { slug: 'bimtara', name: 'Bimtara', url: 'https://bimtara.ru/', shots: old('6137-6261-2023-10-01_23-32-29.png') },
+  { slug: 'bimtara', name: 'Bimtara', url: 'https://bimtara.ru/', shots: shot('bimtara') },
   { slug: 'synergy', name: 'Synergy', url: 'https://lp.synergy.ru/unmanned-technology', shots: old('6430-3032-2022-12-02_14-52-00.png') },
   { slug: 'wap', name: 'WAP Agency', url: 'https://wapagency.ru/', shots: old('6630-6330-2025-10-01_16-44-57.png') },
   { slug: 'citiwell', name: 'Citiwell', url: 'https://citiwell.ru/', shots: old('6131-6532-2023-09-29_18-33-15.png') },
   { slug: 'brkwood', name: 'BRK Wood', url: 'https://msk.brkwood.ru/', shots: old('6361-3866-2023-12-12_13-49-09.png') },
-  { slug: 'nichegolishnego', name: 'Ничего лишнего', url: 'https://nichegolishnego.shop/', shots: old('3239-3639-2024-03-03_23-43-50.png') },
 ];

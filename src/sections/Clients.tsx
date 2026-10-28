@@ -17,9 +17,6 @@ export function Clients() {
     <section id="clients" className="clients scene section" aria-labelledby="clients-h">
       <div className="clients__head">
         <h2 id="clients-h" className="t-head">Наши клиенты</h2>
-        <p className="clients__count">
-          <b>{clients.length}</b> клиентов и <b>{ALL.length - clients.length}</b> партнёров
-        </p>
       </div>
       <ul className="clients__grid">
         {ALL.map((c, i) => (
