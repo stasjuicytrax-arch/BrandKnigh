@@ -1,6 +1,7 @@
 // 4.2 «Привет» + цифры (TZ.md §4.2): тёмная полоса-сцена (как в NextWave). Бегущая строка со старого сайта,
 // скорость и наклон от скорости скролла; под ней фраза со старого сайта. Цифры убраны по решению заказчика 28.10.2026.
 import { Fragment, useEffect, useRef } from 'react';
+import { Button } from '@/components/Buttons';
 import { hello } from '@/data/site';
 import { reducedMotion } from '@/lib/env';
 import { onScrollVelocity } from '@/lib/scroll';
@@ -58,6 +59,7 @@ export function Hello() {
       </div>
       <div className="hello__row">
         <p className="t-lead hello__lead">{hello.lead}</p>
+        <Button href="#video">Смотреть работы</Button>
       </div>
     </section>
   );

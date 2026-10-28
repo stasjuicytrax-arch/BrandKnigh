@@ -404,8 +404,8 @@ html.has-cursor .lightbox button, html.has-cursor .lightbox video { cursor: poin
 .hello__row {
   display: flex;
   justify-content: space-between;
-  align-items: end;
-  gap: 40px;
+  align-items: center;
+  gap: 24px 40px;
   flex-wrap: wrap;
   margin-top: clamp(32px, 5vw, 64px);
   padding-inline: clamp(20px, 3vw, 48px);
