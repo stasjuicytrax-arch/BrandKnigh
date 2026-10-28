@@ -39,14 +39,40 @@ input, textarea { caret-color: var(--color-ink); }
 .t-small { font-size: var(--fs-small); line-height: 1.35; font-weight: 500; }
 .tabular { font-variant-numeric: tabular-nums; }
 
-/* Стекло — основной материал интерфейса (DESIGN.md §2.3) */
+/* Жидкое стекло по рецепту заказчика: отдельная подложка <span class="glass"> первым ребёнком.
+   Фолбэк — blur + заливка; в Chromium (.glass-svg) — SVG-преломление по краям (#bk-liquid). */
 .glass {
-  background: var(--glass-fill);
-  border: 1px solid var(--glass-line);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  isolation: isolate;
+  background: rgb(255 255 255 / 0.42);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4) brightness(1.05);
+  backdrop-filter: blur(10px) saturate(1.4) brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    inset 0 -1px 0 rgb(255 255 255 / 0.15),
+    inset 0 0 0 1px rgb(255 255 255 / 0.45),
+    inset 0 0 24px rgb(255 255 255 / 0.12),
+    0 12px 32px -14px rgb(30 40 10 / 0.35);
 }
+.glass-svg .glass {
+  background: rgb(255 255 255 / 0.3);
+  backdrop-filter: url(#bk-liquid) blur(2px) saturate(1.4) brightness(1.05);
+}
+/* Тёмное стекло — поверх фото и видео, чтобы светлый текст читался */
+.glass.glass--dark,
+.glass-svg .glass.glass--dark {
+  background: rgb(11 11 11 / 0.42);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    inset 0 -1px 0 rgb(255 255 255 / 0.06),
+    inset 0 0 0 1px rgb(255 255 255 / 0.12),
+    0 12px 32px -12px rgb(0 0 0 / 0.6);
+}
+.glass ~ * { position: relative; z-index: 1; }
 
 /* Сцена-карта: скругление 40, отступ от окна 12 */
 .scene {

@@ -2,12 +2,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Header } from '@/components/Header';
+import { GlassFilter } from '@/components/ui/liquid-glass';
 import { policy, policyTitle } from '@/data/policy';
 import './styles/index.css';
 
 function Policy() {
   return (
     <>
+      <GlassFilter />
       <Header standalone />
       <main className="policy container">
         <h1 className="t-head">Политика конфиденциальности</h1>
