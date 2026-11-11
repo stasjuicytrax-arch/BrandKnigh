@@ -624,7 +624,6 @@ button.tile { cursor: pointer; }
 .case__shot { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: 24px; overflow: hidden; background: #dfe1da; }
 .case--wide .case__shot { aspect-ratio: 16 / 7.6; }
 .case__shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 600ms var(--ease); }
-.case__tag { position: absolute; top: 12px; left: 12px; padding: 8px 14px; border-radius: 9999px; font-size: 13px; font-weight: 600; }
 .case__shot .arrow-dot { position: absolute; top: 12px; right: 12px; }
 @media (hover: hover) {
   .case:hover .case__shot img { transform: scale(1.04); }

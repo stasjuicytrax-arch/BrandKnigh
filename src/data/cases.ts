@@ -6,7 +6,6 @@ export type Case = {
   name: string;
   url: string;
   about?: string;
-  tag?: string;
   shots: { desktop: string; mobile?: string; full?: string };
   featured?: boolean;
 };
@@ -20,25 +19,25 @@ const shotNoFull = (slug: string) => ({ desktop: `assets/cases/${slug}-desktop.w
 const old = (file: string) => ({ desktop: `assets/old-site/sites/${file}` });
 
 export const cases: Case[] = [
-  { slug: 'karaoke-rave', name: 'Караоке Рейв', url: 'https://karaokerave.ru/', tag: 'Сайт мероприятия',
+  { slug: 'karaoke-rave', name: 'Караоке Рейв', url: 'https://karaokerave.ru/',
     about: 'Караоке с живым оркестром: афиша, покупка билетов, фотогалерея и заявки для организаторов.', shots: shot('karaoke-rave') },
-  { slug: 'sunrise-republic', name: 'Sunrise Republic', url: 'https://sunriserepublicasia.com/', tag: 'Сайт ночного клуба',
+  { slug: 'sunrise-republic', name: 'Sunrise Republic', url: 'https://sunriserepublicasia.com/',
     about: 'Ночной клуб в Нячанге: галерея интерьеров, афиша и анимированный первый экран.', shots: shot('sunrise-republic') },
-  { slug: 'djnagoo', name: 'DJ NAGOO', url: 'https://djnagoo.site', tag: 'Пресс-кит артиста', featured: true,
+  { slug: 'djnagoo', name: 'DJ NAGOO', url: 'https://djnagoo.site', featured: true,
     about: 'Диджей и продюсер с 2005 года, резиденции в России и Бахрейне, «Лучший DJ Санкт-Петербурга 2018».', shots: shot('djnagoo') },
-  { slug: 'oppaacha', name: 'OPPAACHA', url: 'https://oppaacha.site/', tag: 'Пресс-кит артиста',
+  { slug: 'oppaacha', name: 'OPPAACHA', url: 'https://oppaacha.site/',
     about: 'Продюсер и DJ: релизы, лайвы, букинг, райдер.', shots: shot('oppaacha') },
-  { slug: 'djlolly', name: 'LOLLY', url: 'https://djlolly.site/', tag: 'Пресс-кит артиста',
+  { slug: 'djlolly', name: 'LOLLY', url: 'https://djlolly.site/',
     about: 'DJ и продюсер из Янгона, сеты в Мьянме и Таиланде: шоурил, туры, загрузки для промоутеров.', shots: shot('djlolly') },
-  { slug: '39kingdom', name: '39 KINGDOM', url: 'https://stasjuicytrax-arch.github.io/39Kingdom/', tag: 'Пресс-кит артиста',
+  { slug: '39kingdom', name: '39 KINGDOM', url: 'https://stasjuicytrax-arch.github.io/39Kingdom/',
     about: 'Гибридный электронный дуэт: вокал, гитара, барабаны.', shots: shot('39kingdom') },
-  { slug: 'partytime', name: 'Время веселиться', url: 'https://stasjuicytrax-arch.github.io/Partytime/', tag: 'Сайт ивент-площадки', featured: true,
+  { slug: 'partytime', name: 'Время веселиться', url: 'https://stasjuicytrax-arch.github.io/Partytime/', featured: true,
     about: 'Сеть караоке-лофтов в Санкт-Петербурге: 56 залов, 4 локации, бронь в 6 шагов.', shots: shot('partytime') },
-  { slug: 'digital-events', name: 'DIGITAL EVENTS', url: 'https://stasjuicytrax-arch.github.io/DIGITAL-EVENTS/', tag: 'Сайт агентства', featured: true,
+  { slug: 'digital-events', name: 'DIGITAL EVENTS', url: 'https://stasjuicytrax-arch.github.io/DIGITAL-EVENTS/', featured: true,
     about: 'Креативное агентство из Перми: цифровые аттракционы, AR, 3D-mapping для событий.', shots: shot('digital-events') },
-  { slug: 'st-event', name: 'ST EVENT', url: 'https://st-event.com/', tag: 'Сайт агентства',
+  { slug: 'st-event', name: 'ST EVENT', url: 'https://st-event.com/',
     about: 'Event-агентство из Перми с 2008 года: корпоративы, юбилеи и деловые мероприятия.', shots: shotNoFull('st-event') },
-  { slug: 'stastoropov', name: 'Стас Торопов', url: 'https://stastoropov-site.vercel.app/', tag: 'Сайт ведущего',
+  { slug: 'stastoropov', name: 'Стас Торопов', url: 'https://stastoropov-site.vercel.app/',
     about: 'Ведущий мероприятий в Перми: свадьбы, корпоративы, юбилеи.', shots: shot('stastoropov') },
   { slug: 'help-wedding', name: 'В титрах', url: 'https://help-wedding.ru/', shots: old('6464-6139-2026-06-26_18-52-34.png') },
   { slug: 'school-xyz', name: 'School XYZ', url: 'https://www.school-xyz.com', shots: old('3331-3936-2022-10-31_14-50-21.png') },
@@ -46,6 +45,5 @@ export const cases: Case[] = [
   { slug: 'bimtara', name: 'Bimtara', url: 'https://bimtara.ru/', shots: shotNoFull('bimtara') },
   { slug: 'synergy', name: 'Synergy', url: 'https://lp.synergy.ru/unmanned-technology', shots: old('6430-3032-2022-12-02_14-52-00.png') },
   { slug: 'wap', name: 'WAP Agency', url: 'https://wapagency.ru/', shots: old('6630-6330-2025-10-01_16-44-57.png') },
-  { slug: 'citiwell', name: 'Citiwell', url: 'https://citiwell.ru/', shots: old('6131-6532-2023-09-29_18-33-15.png') },
   { slug: 'brkwood', name: 'BRK Wood', url: 'https://msk.brkwood.ru/', shots: old('6361-3866-2023-12-12_13-49-09.png') },
 ];

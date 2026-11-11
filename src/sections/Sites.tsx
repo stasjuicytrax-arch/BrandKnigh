@@ -1,9 +1,8 @@
 // 4.6 Создание сайтов (референс NextWave): заголовок слева + вводный текст, сетка карточек кейсов —
-// скриншот сверху со стеклянным тегом и круглой стрелкой, ниже название и одна фраза о проекте.
+// скриншот сверху с круглой стрелкой, ниже название и одна фраза о проекте.
 // На компьютере видны все кейсы, на телефоне — первые 4 и кнопка. Клик открывает сайт (цель case_open).
 import { useState } from 'react';
 import { ArrowDot, Button } from '@/components/Buttons';
-import { Glass } from '@/components/ui/liquid-glass';
 import { cases } from '@/data/cases';
 import { tgUrl } from '@/data/site';
 import { asset } from '@/lib/env';
@@ -18,12 +17,6 @@ function Shot({ c }: { c: (typeof cases)[number] }) {
     <span className={`case__shot ${full ? 'is-full' : ''}`} onPointerEnter={(e) => e.pointerType === 'mouse' && c.shots.full && setFull(true)}>
       <img className="case__img" src={asset(c.shots.desktop)} alt={`Сайт ${c.name}`} loading="lazy" width={1440} height={900} />
       {full && c.shots.full && <img className="case__full" src={asset(c.shots.full)} alt="" aria-hidden />}
-      {c.tag && (
-        <span className="case__tag">
-          <Glass />
-          <span>{c.tag}</span>
-        </span>
-      )}
       <ArrowDot />
     </span>
   );
