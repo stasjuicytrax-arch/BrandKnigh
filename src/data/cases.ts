@@ -20,6 +20,10 @@ const shotNoFull = (slug: string) => ({ desktop: `assets/cases/${slug}-desktop.w
 const old = (file: string) => ({ desktop: `assets/old-site/sites/${file}` });
 
 export const cases: Case[] = [
+  { slug: 'karaoke-rave', name: 'Караоке Рейв', url: 'https://karaokerave.ru/', tag: 'Сайт мероприятия',
+    about: 'Караоке с живым оркестром: афиша, покупка билетов, фотогалерея и заявки для организаторов.', shots: shot('karaoke-rave') },
+  { slug: 'sunrise-republic', name: 'Sunrise Republic', url: 'https://sunriserepublicasia.com/', tag: 'Сайт ночного клуба',
+    about: 'Ночной клуб в Нячанге: галерея интерьеров, афиша и анимированный первый экран.', shots: shot('sunrise-republic') },
   { slug: 'djnagoo', name: 'DJ NAGOO', url: 'https://djnagoo.site', tag: 'Пресс-кит артиста', featured: true,
     about: 'Диджей и продюсер с 2005 года, резиденции в России и Бахрейне, «Лучший DJ Санкт-Петербурга 2018».', shots: shot('djnagoo') },
   { slug: 'oppaacha', name: 'OPPAACHA', url: 'https://oppaacha.site/', tag: 'Пресс-кит артиста',
